@@ -16,7 +16,7 @@ const dropdowns = [
 
 // Cerrar menus
 allToggles.forEach(toggle => {
-    toggle.addEventListener('change', function(event) {
+    toggle.addEventListener('change', function (event) {
         allToggles.forEach(otherToggle => {
             if (otherToggle !== event.target) {
                 otherToggle.checked = false;
@@ -25,7 +25,7 @@ allToggles.forEach(toggle => {
     });
 });
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     allToggles.forEach(toggle => {
         const dropdownMenu = toggle.closest('.dropdownmenu');
         if (dropdownMenu && !dropdownMenu.contains(event.target)) {
@@ -43,15 +43,15 @@ document.addEventListener('click', function(event) {
 // Selección "Ordenar por" y "Mostrar libros/página"
 dropdowns.forEach(({ options, selectedLabel, dropdownToggle }) => {
     options.forEach(option => {
-        option.addEventListener('click', function(event) {
-            selectedLabel.textContent = this.getAttribute('data-value'); 
+        option.addEventListener('click', function (event) {
+            selectedLabel.textContent = this.getAttribute('data-value');
             dropdownToggle.checked = false;
         });
     });
 });
 
 // Cargar la página y mostrar los valores de PHP
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     dropdowns.forEach(({ selectedLabel }) => {
         const value = selectedLabel.getAttribute('data-value');
         if (value) {
