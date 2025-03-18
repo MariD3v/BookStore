@@ -20,25 +20,6 @@ if (isset($_POST['docompradefinitiva']) && isset($_SESSION['logged_in'])) {
     $order_email = $_POST['order_email'];
     $client_id = $_SESSION['user_id'];
 
-    // create table compra(
-    //     codigo_compra int auto_increment,
-    //     estado enum('Pendiente de pago', 'Pendiente de envío', 'Pagado', 'Enviado', 'En tránsito', 'Entregado', 'Cancelada') NOT NULL,
-    //     fecha datetime not null,
-    //     nombre varchar(50) not null,
-    //     apellidos varchar(50) not null,
-    //     telefono int not null,
-    //     direccion varchar(100) not null,
-    //     direccion_adicional varchar(100) not null,
-    //     codigo_postal int not null,
-    //     poblacion varchar(30) not null,
-    //     provincia varchar(30) not null,
-    //     codigo_cliente int not null,
-    //     total decimal(5,2) not null,
-    //     primary key (codigo_compra),
-    //     foreign key (codigo_cliente) references cliente(codigo_cliente) ON UPDATE CASCADE ON DELETE CASCADE
-    //   );
-
-
     $stmt = $conn->prepare("INSERT INTO compra (estado, fecha, nombre, apellidos, telefono, direccion, direccion_adicional, codigo_postal, poblacion, provincia, codigo_cliente, total) VALUES ('Pendiente de pago', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
     $stmt->bind_param('sssississii', $order_date, $order_name, $order_surname, $order_phone, $order_direction, $order_direction_adicional, $order_postal_code, $order_town, $order_city, $client_id, $order_total);
     $stmt->execute();
