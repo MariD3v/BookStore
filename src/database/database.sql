@@ -42,6 +42,7 @@ create table cliente(
 
 create table compra(
   codigo_compra int auto_increment,
+  estado enum('Pendiente de pago', 'Pendiente de envío', 'Pagado', 'Enviado', 'En tránsito', 'Entregado', 'Cancelada') NOT NULL,
   fecha datetime not null,
   nombre varchar(50) not null,
   apellidos varchar(50) not null,
@@ -52,6 +53,7 @@ create table compra(
   poblacion varchar(30) not null,
   provincia varchar(30) not null,
   codigo_cliente int not null,
+  total decimal(5,2) not null,
   primary key (codigo_compra),
   foreign key (codigo_cliente) references cliente(codigo_cliente) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -162,11 +164,11 @@ INSERT INTO libro VALUES (68, 'The emperor', 'Romance', 'B', 393, 'Español', '2
 INSERT INTO libro VALUES (69, 'The finisher', 'Romance', 'B', 420, 'Español', '2024-01-03', 'Tapa dura', 16.90, 'Al crecer en las calles de Los Fortis, Alessandro,Alpha Villanova se abrió camino hasta la cima, luchando por su supervivencia, perdiendo todo en el proceso. Una ciudad que entonces lo rechazó es ahora la que él gobierna, aunque solo, como el rey de un imperio oscuro que pocos conocen.Lejos del mundo de Alpha, Zephyr de la Vega tiene una vida normal, una familia normal, un drama normal. Su mayor problema es que la gente intenta hacerla perder algunos kilos. Cuando un encuentro casual la pone en su camino, ella le hace una propuesta que cambiará el curso de sus vidas.', 'Darkverse', 4, 25);
 INSERT INTO libro VALUES (70, 'The annihilator', 'Romance', 'B', 324, 'Español', '2024-06-25', 'Tapa dura', 16.90, 'Ella vive en las sombras. Él los gobierna. Ella es la luna y él la noche oscura que la envuelve.Ella está rodeada de demonios y él es el demonio más grande de todos.Y ella es suya. Pasión, obsesión, posesión. La suya es una historia de peligro, desviación, temor, deseos y los sabores más oscuros del amor.', 'Darkverse', 5, 25);
 
-INSERT INTO cliente VALUES (1, 'Mari', 'Salar Garcia', 'mari.d3v@gmail.com', '123', 1);
-INSERT INTO cliente VALUES (2, 'Juan', 'Rodríguez Toral', 'imrivenbot@gmail.com', '123', 1);
+INSERT INTO cliente VALUES (1, 'Mari', 'Salar Garcia', 'mari.d3v@gmail.com', '4297f44b13955235245b2497399d7a93', 1);
+INSERT INTO cliente VALUES (2, 'Juan', 'Rodríguez Toral', 'imrivenbot@gmail.com', '4297f44b13955235245b2497399d7a93', 1);
 
-INSERT INTO compra VALUES (1,'2024-11-15 20:34:12','Mari', 'Salar Garcia', 654790769, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1);
-INSERT INTO compra VALUES (2,'2024-08-30 14:23:45','Mari', 'Salar Garcia', 654797969, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1);
+INSERT INTO compra VALUES (1, 'Pendiente de pago', '2024-11-15 20:34:12','Mari', 'Salar Garcia', 654790769, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1, 23.12);
+INSERT INTO compra VALUES (2, 'Entregado', '2024-08-30 14:23:45','Mari', 'Salar Garcia', 654797969, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1, 45.99);
 
 INSERT INTO detalle_compra VALUES (1, 43, 3);
 INSERT INTO detalle_compra VALUES (1, 3, 1);

@@ -24,6 +24,10 @@ main {
     color: var(--text-clr);
     display: grid;
     grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "sidebar topbar"
+        "sidebar main"
+        "footer footer";
 }
 
 #sidebar {
@@ -39,6 +43,7 @@ main {
     transition: 300ms ease-in-out;
     overflow: hidden;
     text-wrap: nowrap;
+    grid-area: sidebar;
 }
 
 #sidebar.close {
@@ -147,24 +152,6 @@ main {
     background-color: var(--hover-clr);
 }
 
-
-.container {
-    padding: min(10px, 7%);
-}
-
-.sub-container p {
-    color: var(--secondary-text-clr);
-    margin-top: 5px;
-    margin-bottom: 15px;
-}
-
-.sub-container {
-    border: 1px solid var(--line-clr);
-    border-radius: 1em;
-    margin-bottom: 20px;
-    padding: min(3em, 15%);
-}
-
 header {
     padding: 0;
     margin: 0;
@@ -246,4 +233,118 @@ header {
 
 .dropdown-menu ul li a:hover {
     background-color: var(--hover-clr);
+}
+
+header {
+    grid-area: topbar;
+}
+
+.content {
+    grid-area: main;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.information {
+    display: flex;
+    padding: 1rem;
+    border-radius: 50%;
+    justify-content: center;
+    align-self: center;
+    gap: 5rem;
+}
+
+
+.info-box {
+    border-radius: 5px;
+    background-color: var(--base-clr);
+    padding: 2rem;
+    margin: 1rem;
+    border-color: var(--line-clr);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 340px;
+    justify-content: space-between;
+}
+
+.info-box span {
+    font-size: 3.5rem;
+    font-weight: 600;
+}
+
+.info-box {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.info-box .data p {
+    font-size: 1.5rem;
+    color: var(--secondary-text-clr);
+    margin-top: 20px;
+
+}
+
+.icon svg {
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
+}
+
+.orders {
+    display: flex;
+    justify-content: center;
+
+}
+
+.recent-orders {
+    width: 80%;
+    height: 80%;
+    border-radius: 5px;
+    background-color: var(--base-clr);
+    padding: 2rem;
+    margin: 1rem;
+    border-color: var(--line-clr);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recent-orders span {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.recent-orders table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.recent-orders table th,
+.recent-orders table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--line-clr);
+}
+
+.footer-admin {
+    grid-area: footer;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--base-clr);
+    border-top: 1px solid var(--line-clr);
+    min-height: 4.8vh;
+}
+
+.footer-admin p {
+    padding-left: unset;
+}
+
+td svg {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 23px;
+    cursor: pointer;
 }
