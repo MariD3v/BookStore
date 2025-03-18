@@ -9,12 +9,16 @@ include("../server/formCarrito.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore</title>
     <link rel="stylesheet" href="../styles/style.css" type="text/css" />
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=ARnrqAjjIJCC1jhi9mGZ-pGxSlOQ8VQDhMnFIpdMo0n-Pziw7iGpLMKka7OaODPP8-36IeDl6WndGN2R&currency=EUR&components=buttons&enable-funding=venmo,paylater,card"
+        data-sdk-integration-source="developer-studio">
+    </script>
 
 </head>
 
 <body>
     <main>
-    <nav>
+        <nav>
             <ul class="nav">
                 <li><a id="inicio" href="../index.php"><img src="../assets/images/logo3.png" alt="logo"></a></li>
                 <li id="barra-buscar">
@@ -36,7 +40,8 @@ include("../server/formCarrito.php");
             </div>
         </nav>
         <h1 id="tituloFormulario">Datos de Compra</h1>
-        <form method="POST" name="formulario" action="compra-realizada.php">
+        <form method="POST" name="formulario" id="formularioCompra">
+            <input type="hidden" name="docompraformulariodefinitiva" value="1">
             <div id="formulariocontainer">
                 <div>
                     <label>Nombre</label>
@@ -45,7 +50,7 @@ include("../server/formCarrito.php");
                 </div>
                 <div>
                     <label>Apellidos</label>
-                    <input type="text" name="order_surname"  placeholder=" Apellidos" value="">
+                    <input type="text" name="order_surname" placeholder=" Apellidos" value="">
                     <p class="pError"></p>
                 </div>
                 <div>
@@ -60,37 +65,34 @@ include("../server/formCarrito.php");
                 </div>
                 <div>
                     <label>Dirección</label>
-                    <input type="text" name="order_direction" placeholder=" Dirección" value=""/>
+                    <input type="text" name="order_direction" placeholder=" Dirección" value="" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Datos adicionales</label>
-                    <input type="text" name="order_direction_adicional" placeholder=" Datos adicionales (piso,puerta,barrio...)" value=""/>
+                    <input type="text" name="order_direction_adicional" placeholder=" Datos adicionales (piso,puerta,barrio...)" value="" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Código postal</label>
-                    <input type="text" name="order_postal_code" placeholder=" Código postal" value=""/>
+                    <input type="text" name="order_postal_code" placeholder=" Código postal" value="" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Población</label>
-                    <input type="text" name="order_town" placeholder=" Población" value=""/>
+                    <input type="text" name="order_town" placeholder=" Población" value="" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Provincia</label>
-                    <input type="text" name="order_city" placeholder=" Provincia" value=""/>
+                    <input type="text" name="order_city" placeholder=" Provincia" value="" />
                     <p class="pError"></p>
                 </div>
-                <div style="display:flex; margin:5px">
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0,0,256,256"><g fill="#575757" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M12,2c-5.511,0 -10,4.489 -10,10c0,5.511 4.489,10 10,10c5.511,0 10,-4.489 10,-10c0,-5.511 -4.489,-10 -10,-10zM12,4c4.43012,0 8,3.56988 8,8c0,4.43012 -3.56988,8 -8,8c-4.43012,0 -8,-3.56988 -8,-8c0,-4.43012 3.56988,-8 8,-8zM11,7v2h2v-2zM11,11v6h2v-6z"></path></g></g></svg>
-                    <p style="font-size:12px; margin:0 4px">No se admiten cambios ni devoluciones.</p>
+                <div>
+                    <label>Metodo de pago</label>
+                    <div id="paypal-button-container"></div>
                 </div>
-            </div> 
-            <div id="buttoncontainer">
-                <input type="submit" name="docompradefinitiva" id="doCompraBton" value="Realizar compra"/>
-            </div> 
+            </div>
         </form>
     </main>
 
@@ -119,6 +121,70 @@ include("../server/formCarrito.php");
             </a>
         </div>
     </footer>
+    <script>
+        paypal.Buttons({
+            style: {
+                layout: 'horizontal',
+                color: 'blue',
+                shape: 'rect',
+                label: 'pay',
+                tagline: false,
+                height: 40
+            },
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '<?= $_SESSION['total'] ?>'
+                        }
+                    }]
+                });
+            },
+            onCancel: function(data) {
+                console.log('Pago cancelado', data);
+            },
+            onApprove: async function(data, actions) {
+                try {
+                    const details = await actions.order.capture();
+
+                    // Asegurar que estamos seleccionando el formulario correcto
+                    let formu = document.getElementById('formularioCompra');
+
+                    if (!formu) {
+                        console.error('No se encontró el formulario.');
+                        return;
+                    }
+
+                    let formulario = new FormData(formu);
+
+                    // Verificar si los datos están siendo capturados
+                    for (let [key, value] of formulario.entries()) {
+                        console.log(key, value);
+                    }
+
+                    const response = await fetch('./compra-realizada.php', {
+                        method: 'POST',
+                        body: formulario
+                    });
+
+                    if (response.ok) {
+                        console.log(formulario)
+                        console.log(response);
+                        window.location.href = 'compra-realizada.php?order_status=Compra realizada con éxito';
+                    } else {
+                        console.error('Error en la respuesta del servidor');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            },
+            onError: function(err) {
+                console.error('An error occurred during the transaction', err);
+                alert('Ocurrió un error durante la transacción. Por favor, inténtelo de nuevo.');
+            }
+        }).render('#paypal-button-container');
+    </script>
     <script src="../scripts/orderFormValidation.js"></script>
 </body>
+
 </html>
