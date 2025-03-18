@@ -52,11 +52,11 @@ include("../server/getProductsLibro.php");
                 </div>
             </div>
             <form method="POST" action="carrito.php">
-                <input type="hidden" name="product_id" value="<?php echo $libro["codigo_libro"] ?>" />
-                <input type="hidden" name="product_name" value="<?php echo mb_strtoupper($libro["titulo"]) ?>" />
-                <input type="hidden" name="product_price" value="<?php echo ($libro["precio"]) ?>" />
-                <input type="hidden" name="product_author" value="<?php echo mb_strtoupper($autor["nombre"]) ?>" />
-                <input type="hidden" name="product_quantity" value="1" />
+                <input type="hidden" name="product_id" value="<?php echo $libro["codigo_libro"] ?>"/>
+                <input type="hidden" name="product_name" value="<?php echo mb_strtoupper($libro["titulo"]) ?>"/>
+                <input type="hidden" name="product_price" value="<?php echo ($libro["precio"]) ?>"/>
+                <input type="hidden" name="product_author" value="<?php echo mb_strtoupper($autor["nombre"]) ?>"/>
+                <input type="hidden" name="product_quantity" value="1"/>
                 <button class="añadircestabutton" type="submit" name="add_product">Añadir a la cesta</button>
             </form>
             <fieldset class="fichatecnica">

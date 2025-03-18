@@ -36,8 +36,8 @@ include("../server/orderPlaced.php");
             </div>
         </nav>
         <div class="comprarealizadacontainer">
-            <p><?php echo $_GET['order_status']; ?></p>
-            <p>Pago total: <?php echo $_SESSION['total']; ?>€</p>
+            <p><?php echo $_GET['order_status'];?></p>
+            <p>Pago total: <?php echo $_SESSION['total'];?>€</p>
         </div>
         <div class="volveriniciobutton">
             <a href="../index.php">Volver a la página de inicio</a>
