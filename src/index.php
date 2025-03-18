@@ -1,6 +1,5 @@
 <?php
 include("server/getProducts.php");
-include("server/profile.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +13,7 @@ include("server/profile.php");
 </head>
 
 <body>
+    <?php   ?>
     <main>
         <nav>
             <ul class="nav">
@@ -27,13 +27,6 @@ include("server/profile.php");
                 <li style="display:flex; gap:10px">
                     <a id="navButton" href="pages/registro.php"><img src="assets/images/user.png" alt="Perfil" height="35px"></a>
                     <a id="navButton" href="pages/carrito.php"><img src="assets/images/carro.png" alt="Cesta" height="35px"></a>
-                    <?php
-
-                    if (isset($_SESSION['administrador']) && $_SESSION['administrador'] == 1) {
-                        echo "<a id='navButton' href='pages/adminpanel.php'><img src='assets/images/admin_panel_icon.webp' alt='Cesta' height='35px'></a>";
-                    }
-
-                    ?>
                 </li>
             </ul>
             <div id="barra-buscar-hide">

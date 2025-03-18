@@ -164,3 +164,86 @@ main {
     margin-bottom: 20px;
     padding: min(3em, 15%);
 }
+
+header {
+    padding: 0;
+    margin: 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0;
+    background-color: var(--base-clr);
+    border-bottom: 1px solid var(--line-clr);
+    padding-right: 20px;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: wheat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    margin-right: 4px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: end;
+}
+
+.infor {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: var(--base-clr);
+    border: 1px solid var(--line-clr);
+    border-radius: .5rem;
+    top: 70px;
+    right: 27px;
+    width: 180px;
+    padding: 5px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 10px;
+}
+
+.dropdown-menu ul li a {
+    text-decoration: none;
+    color: var(--text-clr);
+    padding: 10px;
+    border-radius: .5rem;
+    text-align: left;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-menu ul li a:hover {
+    background-color: var(--hover-clr);
+}

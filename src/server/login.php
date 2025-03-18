@@ -4,20 +4,19 @@ include("getConnection.php");
 
 session_start();
 
-if (isset($_SESSION['logged_in'])) { //Si ya estamos logeados en nuestra sesion
+if (isset($_SESSION['logged_in'])) {
     header('location: perfil.php');
     exit();
 }
 
-if (isset($_POST['iniciar_sesion'])) { //Si pulsamos el boton iniciar sesion
+if (isset($_POST['iniciar_sesion'])) {
 
-    // obtener los datos enviados en el form del inicio de sesión
     $client_email = $_POST['email'];
     $client_pass = $_POST['password'];
 
-    if (strlen($client_email) == 0) { //Comprobamos que no metan el email vacio
+    if (strlen($client_email) == 0) {
         header('location: iniciar-sesion.php?errorEma=Introduce un email');
-    } else if (strlen($client_pass) == 0) {  //Comprobamos que no metan la contraseña vacia
+    } else if (strlen($client_pass) == 0) {
         header('location: iniciar-sesion.php?errorPass=Introduce una contraseña');
     } else {
         $stmt = $conn->prepare("SELECT codigo_cliente, nombre, apellidos, email, contraseña, administrador FROM cliente WHERE email = ? AND contraseña = ? LIMIT 1");
