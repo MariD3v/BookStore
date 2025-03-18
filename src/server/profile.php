@@ -27,6 +27,7 @@ if(isset($_GET['cerrarsesion'])){ //Si hemos pulsado el boton de cerrar sesion
         unset($_SESSION['user_email']);
         unset($_SESSION['user_name']);
         unset($_SESSION['user_surname']);
+        unset($_SESSION['administrador']);
 
         header('location: iniciar-sesion.php');
         exit();

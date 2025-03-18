@@ -1,6 +1,5 @@
-DROP DATABASE IF EXISTS biblioteca;
+
 CREATE DATABASE IF NOT EXISTS biblioteca CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
-USE biblioteca;
 
 
 create table autor(
@@ -37,6 +36,7 @@ create table cliente(
   apellidos varchar(50) not null,
   email varchar(100) unique not null,
   contraseña varchar(100),
+  administrador boolean default 0 not null,
   primary key(codigo_cliente)
 );
 
@@ -162,7 +162,8 @@ INSERT INTO libro VALUES (68, 'The emperor', 'Romance', 'B', 393, 'Español', '2
 INSERT INTO libro VALUES (69, 'The finisher', 'Romance', 'B', 420, 'Español', '2024-01-03', 'Tapa dura', 16.90, 'Al crecer en las calles de Los Fortis, Alessandro,Alpha Villanova se abrió camino hasta la cima, luchando por su supervivencia, perdiendo todo en el proceso. Una ciudad que entonces lo rechazó es ahora la que él gobierna, aunque solo, como el rey de un imperio oscuro que pocos conocen.Lejos del mundo de Alpha, Zephyr de la Vega tiene una vida normal, una familia normal, un drama normal. Su mayor problema es que la gente intenta hacerla perder algunos kilos. Cuando un encuentro casual la pone en su camino, ella le hace una propuesta que cambiará el curso de sus vidas.', 'Darkverse', 4, 25);
 INSERT INTO libro VALUES (70, 'The annihilator', 'Romance', 'B', 324, 'Español', '2024-06-25', 'Tapa dura', 16.90, 'Ella vive en las sombras. Él los gobierna. Ella es la luna y él la noche oscura que la envuelve.Ella está rodeada de demonios y él es el demonio más grande de todos.Y ella es suya. Pasión, obsesión, posesión. La suya es una historia de peligro, desviación, temor, deseos y los sabores más oscuros del amor.', 'Darkverse', 5, 25);
 
-INSERT INTO cliente VALUES (1, 'Mari', 'Salar Garcia', 'mari.d3v@gmail.com', '123');
+INSERT INTO cliente VALUES (1, 'Mari', 'Salar Garcia', 'mari.d3v@gmail.com', '123', 1);
+INSERT INTO cliente VALUES (2, 'Juan', 'Rodríguez Toral', 'imrivenbot@gmail.com', '123', 1);
 
 INSERT INTO compra VALUES (1,'2024-11-15 20:34:12','Mari', 'Salar Garcia', 654790769, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1);
 INSERT INTO compra VALUES (2,'2024-08-30 14:23:45','Mari', 'Salar Garcia', 654797969, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1);
