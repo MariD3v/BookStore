@@ -147,7 +147,6 @@ include("../server/formCarrito.php");
                 try {
                     const details = await actions.order.capture();
 
-                    // Asegurar que estamos seleccionando el formulario correcto
                     let formu = document.getElementById('formularioCompra');
 
                     if (!formu) {
@@ -156,11 +155,6 @@ include("../server/formCarrito.php");
                     }
 
                     let formulario = new FormData(formu);
-
-                    // Verificar si los datos están siendo capturados
-                    for (let [key, value] of formulario.entries()) {
-                        console.log(key, value);
-                    }
 
                     const response = await fetch('./compra-realizada.php', {
                         method: 'POST',
