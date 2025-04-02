@@ -1,7 +1,20 @@
 <?php
-include("../server/getProductsCarrito.php");
-?>
+include("../server/formCarrito.php");
+include("../server/metodos-pago.php");
+include("../server/guardar-datos-pago.php");
 
+if (!isset($_SESSION['logged_in'])) {
+    header("Location: ../index.php");
+    exit();
+} else if (!isset($_SESSION['datos_pago'])) {
+    header("Location: ../index.php");
+    exit();
+} else if (!isset($_SESSION['cart'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,6 +23,11 @@ include("../server/getProductsCarrito.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore</title>
     <link rel="stylesheet" href="../styles/style.css" type="text/css" />
+    <link rel="stylesheet" href="../styles/resumen-pedidos.css" type="text/css" />
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=ARnrqAjjIJCC1jhi9mGZ-pGxSlOQ8VQDhMnFIpdMo0n-Pziw7iGpLMKka7OaODPP8-36IeDl6WndGN2R&currency=EUR&components=buttons&enable-funding=venmo,paylater,card"
+        data-sdk-integration-source="developer-studio">
+    </script>
 
 </head>
 
@@ -36,57 +54,49 @@ include("../server/getProductsCarrito.php");
                 </form>
             </div>
         </nav>
+        <h1 id="tituloFormulario">Resumen del pedido</h1>
+        <div>
+            <div id="formulariocontainer">
+                <div class="resumenPedido">
+                    <h2>Resumen del pedido</h2>
+                    <?php
+                    if (isset($_SESSION['datos_pago']) && isset($_SESSION['logged_in'])) {
+                        foreach ($_SESSION['datos_pago'] as $key => $value) {
+                            echo "<p>" . ucfirst(str_replace('_', ' ', $key)) . ": " . htmlspecialchars($value) . "</p>";
+                        }
+                    }
 
-        <div class="carritocontainer">
-            <div id="articuloscarrito">
-                <?php if (!isset($_SESSION['cart'])) {
-                    echo "<div style=\"text-align:center; margin:10%\"><h1 style=\"color:white; font-size:30px\">Tu cesta está vacía</h1><p style=\"color:white\">Explora multitud de libros a buen precio desde nuestra página principal</p></div>";
-                } else if (count($_SESSION['cart']) == 0) {
-                    echo "<div style=\"text-align:center; margin:10%\"><h1 style=\"color:white; font-size:30px\">Tu cesta está vacía</h1><p style=\"color:white\">Explora multitud de libros a buen precio desde nuestra página principal</p></div>";
-                } else {
-                    foreach ($_SESSION['cart'] as $key => $value) { ?>
-                        <div class="articulocarrito">
-                            <a href=<?php echo "libro.php?codigo_libro=" . $value['product_id']; ?>><img class="portada" src="../assets/images/covers/<?php echo $key ?>.png"></a>
-                            <p class="tituloCarro"><?php echo $value['product_name'] ?></p>
-                            <p class="autorCarro"><?php echo $value['product_author'] ?></p>
-                            <form method="POST" action="carrito.php">
-                                <div class="buttonunidadescont">
-                                    <input type="hidden" name="product_id" value=<?php echo $value['product_id'] ?>>
-                                    <input type="hidden" name="product_quantity" value=<?php echo $value['product_quantity'] ?>>
-                                    <button class="buttonunidades" name="more_product">+</button>
-                                    <p class="unidadesCarro"><?php echo $value['product_quantity'] ?></p>
-                                    <button class="buttonunidades" name="less_product">-</button>
-                                    <button class="buttonunidades" name="remove_product"><svg x="0px" y="0px" width="28" height="28" viewBox="0,0,256,256">
-                                            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
-                                                <g transform="scale(6.4,6.4)">
-                                                    <path d="M24.279,3l0.667,2h-9.892l0.667,-2h8.558M24.279,2h-8.558c-0.43,0 -0.813,0.275 -0.949,0.684l-0.772,2.316v1h12v-1l-0.772,-2.316c-0.136,-0.409 -0.518,-0.684 -0.949,-0.684z" fill="#8f5e72"></path>
-                                                    <path d="M8,37.5c-0.827,0 -1.5,-0.673 -1.5,-1.5v-27.5h27v27.5c0,0.827 -0.673,1.5 -1.5,1.5z" fill="#ffebf5"></path>
-                                                    <path d="M33,9v27c0,0.551 -0.449,1 -1,1h-24c-0.551,0 -1,-0.449 -1,-1v-27h26M34,8h-28v28c0,1.105 0.895,2 2,2h24c1.105,0 2,-0.895 2,-2v-28z" fill="#8f5e72"></path>
-                                                    <path d="M4.5,8.5v-1.5c0,-0.827 0.673,-1.5 1.5,-1.5h28c0.827,0 1.5,0.673 1.5,1.5v1.5z" fill="#ffebf5"></path>
-                                                    <path d="M34,6c0.551,0 1,0.449 1,1v1h-30v-1c0,-0.551 0.449,-1 1,-1h28M34,5h-28c-1.105,0 -2,0.895 -2,2v2h32v-2c0,-1.105 -0.895,-2 -2,-2zM24,11h1v24h-1zM15,11h1v24h-1zM10,11h1v24h-1zM29,11h1v24h-1z" fill="#8f5e72"></path>
-                                                </g>
-                                            </g>
-                                        </svg></button>
-                                </div>
-                            </form>
-                            <p class="precioCarro"><?php echo $value['product_price'] * $value['product_quantity'] . '€' ?></p>
+
+                    ?>
+                </div>
+                <div class="resumenPedido">
+                    <h2>Resumen de la compra</h2>
+                    <?php foreach ($_SESSION['cart'] as $libro) : ?>
+                        <div class="resumenLibro">
+                            <div class="resumenLibroInfo">
+                                <p><?= $libro['product_quantity'] ?>x</p>
+                                <p><?= $libro['product_name'] ?></p>
+                                <p><?= $libro['product_author'] ?></p>
+                                <p><?= $libro['product_price'] * $libro['product_quantity'] ?> €</p>
+                            </div>
                         </div>
-                <?php }
-                } ?>
-            </div>
-            <div class="containerbuttonrealizarcompra">
-                <p id="doCompraText">Total = <b><em><?php if (isset($_SESSION['cart'])) {
-                                                        echo $_SESSION['total'] . '€';
-                                                    } else {
-                                                        echo 0;
-                                                    } ?></em></b></p>
-                <form method="POST" action="formulario-compra.php">
-                    <div style="display:flex; justify-content:center;">
-                        <button name="do_compra" id="doCompraBton">Realizar pedido</button>
-                    </div>
-                </form>
+                    <?php endforeach; ?>
+                    <h2>Precio total</h2>
+                    <p id="precioTotal"><?= $_SESSION['total'] ?>€</p>
+
+                </div>
             </div>
         </div>
+
+        <div id="buttoncontainer">
+            <input type="submit" id="doCompraBton" value="Pagar ahora y finalizar" />
+            <div id="paypal-button-container"></div>
+        </div>
+
+        <form method="POST" name="formulario" id="formularioCompra">
+            <input type="hidden" name="docompraformulariodefinitiva" value="1">
+
+        </form>
     </main>
 
     <footer>
@@ -113,7 +123,22 @@ include("../server/getProductsCarrito.php");
                 </svg>
             </a>
         </div>
+        <script src="../scripts/Payway.js" defer></script>
     </footer>
+    <script>
+        document.getElementById("doCompraBton").addEventListener("click", function() {
+            var total = <?php echo $_SESSION['total'] ?>;
+            var paymentMethod = <?= json_encode($_SESSION['payment_method']) ?>;
+
+            document.getElementById("doCompraBton").style.display = "none";
+
+            if (paymentMethod === 'paypal') {
+                checkPayPal(total, <?php echo json_encode($_SESSION['datos_pago']) ?>);
+            } else {
+                alert("Método de pago no soportado. Por favor, elige PayPal.");
+            }
+        });
+    </script>
 </body>
 
 </html>

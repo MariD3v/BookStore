@@ -1,0 +1,13 @@
+.resumenLibro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.resumenLibroInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

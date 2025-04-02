@@ -1,0 +1,24 @@
+/* Métodos de pago */
+input[type="radio"] {
+    display: unset;
+}
+
+#listaMetodos {
+    background-color: var(--lighter-color);
+    height: 430px;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 30px 11% 0 11%;
+    padding: 20px;
+    box-shadow: 2px 2px 3px black;
+}
+
+#listaMetodos label {
+    color: var(--bgl-color);
+    margin: 5px;
+    font-weight: 600;
+}
+
+.metodoPago {
+    display: flex;
+}

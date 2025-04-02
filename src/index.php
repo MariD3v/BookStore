@@ -13,7 +13,6 @@ include("server/getProducts.php");
 </head>
 
 <body>
-    <?php   ?>
     <main>
         <nav>
             <ul class="nav">

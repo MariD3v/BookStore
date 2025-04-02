@@ -39,59 +39,59 @@ include("../server/formCarrito.php");
                 </form>
             </div>
         </nav>
-        <h1 id="tituloFormulario">Datos de Compra</h1>
-        <form method="POST" name="formulario" id="formularioCompra">
-            <input type="hidden" name="docompraformulariodefinitiva" value="1">
+        <h1 id="tituloFormulario">Dirección de envío</h1>
+        <form method="POST" name="formulario" id="formularioCompra" action="../pages/metodos-pago.php">
+            <input type="hidden" name="actualizarDatosPago" value="1">
             <div id="formulariocontainer">
                 <div>
                     <label>Nombre</label>
-                    <input type="text" name="order_name" placeholder=" Nombre" value="">
+                    <input type="text" name="order_name" placeholder=" Nombre" value="Pedro">
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Apellidos</label>
-                    <input type="text" name="order_surname" placeholder=" Apellidos" value="">
+                    <input type="text" name="order_surname" placeholder=" Apellidos" value="García">
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Correo electrónico</label>
-                    <input type="text" name="order_email" placeholder=" Correo electrónico" value="">
+                    <input type="text" name="order_email" placeholder=" Correo electrónico" value="wdcwc@gmail.com">
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Teléfono</label>
-                    <input type="text" name="order_phone" placeholder=" Teléfono" value="">
+                    <input type="text" name="order_phone" placeholder=" Teléfono" value="2323232323">
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Dirección</label>
-                    <input type="text" name="order_direction" placeholder=" Dirección" value="" />
+                    <input type="text" name="order_direction" placeholder=" Dirección" value="wdcwdwdc" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Datos adicionales</label>
-                    <input type="text" name="order_direction_adicional" placeholder=" Datos adicionales (piso,puerta,barrio...)" value="" />
+                    <input type="text" name="order_direction_adicional" placeholder=" Datos adicionales (piso,puerta,barrio...)" value="wdcwcwcwc" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Código postal</label>
-                    <input type="text" name="order_postal_code" placeholder=" Código postal" value="" />
+                    <input type="text" name="order_postal_code" placeholder=" Código postal" value="2323223" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Población</label>
-                    <input type="text" name="order_town" placeholder=" Población" value="" />
+                    <input type="text" name="order_town" placeholder=" Población" value="wdcwdccwdc" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Provincia</label>
-                    <input type="text" name="order_city" placeholder=" Provincia" value="" />
+                    <input type="text" name="order_city" placeholder=" Provincia" value="dwdcwcd" />
                     <p class="pError"></p>
                 </div>
-                <div>
-                    <label>Metodo de pago</label>
-                    <div id="paypal-button-container"></div>
-                </div>
+            </div>
+            <div id="buttoncontainer">
+                <input type="submit" name="actualizarDatosPago" id="doCompraBton" value="Guardar y continuar" />
+            </div>
             </div>
         </form>
     </main>
@@ -122,61 +122,7 @@ include("../server/formCarrito.php");
         </div>
     </footer>
     <script>
-        paypal.Buttons({
-            style: {
-                layout: 'horizontal',
-                color: 'blue',
-                shape: 'rect',
-                label: 'pay',
-                tagline: false,
-                height: 40
-            },
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '<?= $_SESSION['total'] ?>'
-                        }
-                    }]
-                });
-            },
-            onCancel: function(data) {
-                console.log('Pago cancelado', data);
-            },
-            onApprove: async function(data, actions) {
-                try {
-                    const details = await actions.order.capture();
-
-                    let formu = document.getElementById('formularioCompra');
-
-                    if (!formu) {
-                        console.error('No se encontró el formulario.');
-                        return;
-                    }
-
-                    let formulario = new FormData(formu);
-
-                    const response = await fetch('./compra-realizada.php', {
-                        method: 'POST',
-                        body: formulario
-                    });
-
-                    if (response.ok) {
-                        console.log(formulario)
-                        console.log(response);
-                        window.location.href = 'compra-realizada.php?order_status=Compra realizada con éxito';
-                    } else {
-                        console.error('Error en la respuesta del servidor');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-            },
-            onError: function(err) {
-                console.error('An error occurred during the transaction', err);
-                alert('Ocurrió un error durante la transacción. Por favor, inténtelo de nuevo.');
-            }
-        }).render('#paypal-button-container');
+        // checkPayPal($_SESSION['total'] );
     </script>
     <script src="../scripts/orderFormValidation.js"></script>
 </body>
