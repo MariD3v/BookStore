@@ -447,32 +447,70 @@ td svg:hover {
 
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 
     * {
-        /* border: 1px solid red;º */
+        /* border: 1px solid red; */
     }
 
     #sidebar>ul>li:first-child {
-        display: flex;
-        justify-content: unset;
-        margin-bottom: unset;
-
-        .logo {
-            font-weight: 600;
-        }
+        display: none;
     }
 
     #sidebar {
-        display: none;
+        /* display: none; */
     }
 
     #topbar {
         display: none;
     }
 
-    .orders {
-        display: none
+
+    .recent-orders table,
+    .recent-orders thead,
+    .recent-orders tbody,
+    .recent-orders th,
+    .recent-orders td,
+    .recent-orders tr {
+        display: block;
+        width: 100%;
+    }
+
+    .recent-orders thead {
+        display: none;
+    }
+
+    .recent-orders tr {
+        margin-bottom: 1rem;
+        background-color: var(--base-clr);
+        border-radius: .5rem;
+        padding: 1rem;
+    }
+
+    .recent-orders td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--line-clr);
+        position: relative;
+    }
+
+    .recent-orders td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: var(--secondary-text-clr);
+        flex-basis: 50%;
+        text-align: left;
+    }
+
+    .recent-orders td:last-child {
+        border-bottom: none;
+    }
+
+    td[data-label="Código"] {
+        display: none;
     }
 
     .icon svg {
@@ -528,5 +566,10 @@ td svg:hover {
         p {
             margin: 10px;
         }
+    }
+
+    .dropdown-menu {
+
+        right: 10px;
     }
 }
