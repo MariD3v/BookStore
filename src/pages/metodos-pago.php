@@ -1,5 +1,11 @@
 <?php
 include("../server/formCarrito.php");
+include("../server/guardar-datos-pago.php");
+
+if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
+    header('location: ../index.php'); //Si el carro esta vacio, nos devuelve a index.php
+    exit();
+}
 
 ?>
 <!DOCTYPE html>

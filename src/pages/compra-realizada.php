@@ -1,6 +1,6 @@
 <?php
 include("../server/formCarrito.php");
-// include("../server/orderPlaced.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

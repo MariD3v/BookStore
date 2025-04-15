@@ -1,5 +1,13 @@
 <?php
 include("../server/formCarrito.php");
+
+
+if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
+    header('location: ../index.php'); //Si el carro esta vacio, nos devuelve a index.php
+    exit();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -121,9 +129,6 @@ include("../server/formCarrito.php");
             </a>
         </div>
     </footer>
-    <script>
-        // checkPayPal($_SESSION['total'] );
-    </script>
     <script src="../scripts/orderFormValidation.js"></script>
 </body>
 

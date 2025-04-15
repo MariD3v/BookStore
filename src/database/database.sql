@@ -67,6 +67,11 @@ create table detalle_compra(
   foreign key (codigo_compra) references compra(codigo_compra) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE visitas (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  visitas INT NOT NULL DEFAULT 0
+);
+
 INSERT INTO autor VALUES (1, 'Sarah J Mass','Estados Unidos','1986-03-05',0,'Autora número 1 del New York Times, y su obra, en la que destaca la saga Trono de cristal, es un fenómeno superventas internacional. Se han vendido más de nueve millones de ejemplares de sus libros y estos se publican en treinta y siete idiomas. Sarah nació en Nueva York, pero actualmente vive en Pensilvania con su marido, su hijo y su perro.');
 INSERT INTO autor VALUES (2, 'Stephen King','Estados Unidos','1947-09-21',0,'Stephen King (nacido el 21 de septiembre de 1947 en Portland, Maine) es un destacado escritor estadounidense de terror, ficción sobrenatural y más. Con más de 500 millones de libros vendidos, ha publicado 65 novelas y numerosas adaptaciones cinematográficas y televisivas.');
 INSERT INTO autor VALUES (3, 'Marie Lu','China','1984-07-11',0,'Marie Lu nació en China, pero se mudó junto con su familia a Texas en 1989. En 2006 se graduó en Ciencias políticas en la Universidad del Sur de California, aunque acabó trabajando en el campo de la literatura y de la animación. Actualmente vive en Los Ángeles, California, con su marido y sus perros.');
@@ -176,3 +181,5 @@ INSERT INTO detalle_compra VALUES (1, 21, 2);
 INSERT INTO detalle_compra VALUES (2, 10, 1);
 INSERT INTO detalle_compra VALUES (2, 24, 2);
 INSERT INTO detalle_compra VALUES (2, 21, 1);
+
+INSERT INTO visitas (id, visitas) VALUES (0, 0);

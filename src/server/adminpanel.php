@@ -15,3 +15,37 @@ function getOrders()
     }
     return $orders;
 }
+
+function getTotalUsersNumber()
+{
+    global $conn;
+    $stmt = $conn->prepare("SELECT COUNT(*) AS total FROM cliente");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    return $row['total'];
+}
+
+function getTotalOrdersNumber()
+{
+    global $conn;
+    $stmt = $conn->prepare("SELECT COUNT(*) AS total FROM compra");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    return $row['total'];
+}
+
+function ViewVisitsNumeber()
+{
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT visitas FROM visitas");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    return $row['visitas'];
+}

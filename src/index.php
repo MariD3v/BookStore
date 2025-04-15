@@ -1,5 +1,7 @@
 <?php
 include("server/getProducts.php");
+include("server/CountVisits.php");
+
 ?>
 
 <!DOCTYPE html>

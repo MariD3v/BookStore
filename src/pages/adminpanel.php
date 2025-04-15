@@ -79,7 +79,9 @@ if (!isset($_SESSION['administrador']) == 1) {
             <div class="topbar">
                 <button class="dropdown-btn" onclick="topbarSubMenu(event, this)">
                     <div class="user-info">
-                        <img src="../assets/images/user.png" alt="Icono de usuario" class="user-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="43px" viewBox="0 -960 960 960" width="43px" fill="#e3e3e3">
+                            <path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z" />
+                        </svg>
                         <div class="infor">
                             <span class="name"><?php echo (ucfirst($_SESSION['user_name'])) ?></span>
                             <span class="role">Administrador</span>
@@ -123,7 +125,7 @@ if (!isset($_SESSION['administrador']) == 1) {
             <div class="information">
                 <div class="info-box">
                     <div class="data">
-                        <span>23</span>
+                        <span><?php print_r(getTotalUsersNumber()) ?></span>
                         <p>Usuarios registrados</p>
                     </div>
                     <div class="icon">
@@ -134,7 +136,7 @@ if (!isset($_SESSION['administrador']) == 1) {
                 </div>
                 <div class="info-box">
                     <div class="data">
-                        <span>23</span>
+                        <span><?php print_r(getTotalOrdersNumber()) ?></span>
                         <p>Pedidos realizados</p>
                     </div>
                     <div class="icon">
@@ -145,8 +147,8 @@ if (!isset($_SESSION['administrador']) == 1) {
                 </div>
                 <div class="info-box">
                     <div class="data">
-                        <span>1,200</span>
-                        <p>Visitas total</p>
+                        <span><?php echo ViewVisitsNumeber() ?></span>
+                        <p>Visitas diarias</p>
                     </div>
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
@@ -201,9 +203,15 @@ if (!isset($_SESSION['administrador']) == 1) {
     <footer class="footer-admin">
         <div class="footer-content">
             <p>&copy; <?php echo (date("Y")) ?> Bookstore. Todos los derechos reservados.</p>
+            <button id="darkModeToggle" onclick="toggleDarkMode()">
+                <svg id="bulbIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3">
+                    <path d="M9 21h6v-1H9v1zm-2-2h10v-1H7v1zm5-18C8.14 1 5 4.14 5 8c0 2.38 1.19 4.47 3 5.74V16c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm3.65 11.35-.65.46V15h-4v-2.19l-.65-.46C8.21 11.91 7 10.05 7 8c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.05-1.21 3.91-3.35 5.35z" />
+                </svg>
+            </button>
         </div>
     </footer>
     <script src="../scripts/adminpanel.js"></script>
+    <script src="../scripts/darkMode.js"></script>
 </body>
 
 </html>

@@ -3,16 +3,12 @@ include("../server/formCarrito.php");
 include("../server/metodos-pago.php");
 include("../server/guardar-datos-pago.php");
 
-if (!isset($_SESSION['logged_in'])) {
-    header("Location: ../index.php");
-    exit();
-} else if (!isset($_SESSION['datos_pago'])) {
-    header("Location: ../index.php");
-    exit();
-} else if (!isset($_SESSION['cart'])) {
-    header("Location: ../index.php");
+
+if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
+    header('location: ../index.php'); //Si el carro esta vacio, nos devuelve a index.php
     exit();
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -60,12 +56,12 @@ if (!isset($_SESSION['logged_in'])) {
                 <div class="resumenPedido">
                     <h2>Resumen del pedido</h2>
                     <?php
-                    if (isset($_SESSION['datos_pago']) && isset($_SESSION['logged_in'])) {
-                        foreach ($_SESSION['datos_pago'] as $key => $value) {
-                            echo "<p>" . ucfirst(str_replace('_', ' ', $key)) . ": " . htmlspecialchars($value) . "</p>";
-                        }
-                    }
-
+                    // if (isset($_SESSION['datos_pago']) && isset($_SESSION['logged_in'])) {
+                    //     foreach ($_SESSION['datos_pago'] as $key => $value) {
+                    //         echo "<p>" . ucfirst(str_replace('_', ' ', $key)) . ": " . $value . "</p>";
+                    //     }
+                    // }
+                    print_r($_SESSION['datos_pago']);
 
                     ?>
                 </div>

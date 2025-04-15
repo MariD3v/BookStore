@@ -7,6 +7,15 @@
     --secondary-text-clr: #b0b3c1;
 }
 
+:root.light-mode {
+    --base-clr: #ffffff;
+    --line-clr: #cccccc;
+    --hover-clr: #f0f0f0;
+    --text-clr: #111111;
+    --acent-clr: #5e63ff;
+    --secondary-text-clr: #555555;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -68,9 +77,10 @@ main {
 #sidebar ul li.active a {
     color: var(--acent-clr);
 
-    svg {
-        fill: var(--acent-clr);
-    }
+}
+
+svg {
+    fill: var(--text-clr);
 }
 
 #sidebar a,
@@ -189,7 +199,7 @@ header {
 .infor {
     display: flex;
     flex-direction: column;
-    color: white;
+    color: var(--text-clr);
 }
 
 .dropdown-menu {
@@ -289,6 +299,7 @@ header {
     width: 100px;
     height: 100px;
     margin-left: 20px;
+    fill: var(--text-clr);
 }
 
 .orders {
@@ -326,27 +337,20 @@ header {
     border-bottom: 1px solid var(--line-clr);
 }
 
-.footer-admin {
-    grid-area: footer;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--base-clr);
-    border-top: 1px solid var(--line-clr);
-    min-height: 4.8vh;
-}
-
-.footer-admin p {
-    padding-left: unset;
-}
 
 td svg {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 23px;
     cursor: pointer;
+    fill: var(--text-clr);
+}
+
+td svg:hover {
+    fill: var(--acent-clr);
 }
 
 .recent-orders {
@@ -361,4 +365,168 @@ td svg {
 .table-container {
     max-height: 500px;
     overflow-y: auto;
+}
+
+.footer-admin {
+    grid-area: footer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--base-clr);
+    border-top: 1px solid var(--line-clr);
+    color: var(--text-clr);
+    min-height: 4.8vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.footer-admin p {
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Dark mode */
+
+#darkModeToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+#darkModeToggle:hover {
+    background-color: var(--hover-clr);
+}
+
+#bulbIcon {
+    width: 32px;
+    height: 32px;
+    transition: fill 0.3s ease;
+}
+
+@media (max-width: 768px) {
+
+    main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas: "topbar" "sidebar" "main" "footer";
+    }
+
+    #sidebar {
+        position: static;
+        height: auto;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--line-clr);
+    }
+
+    #sidebar.close {
+        width: 100%;
+        display: none;
+    }
+
+    .topbar {
+        padding-right: 1rem;
+    }
+
+    .user-icon {
+        justify-content: flex-start;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    * {
+        /* border: 1px solid red;º */
+    }
+
+    #sidebar>ul>li:first-child {
+        display: flex;
+        justify-content: unset;
+        margin-bottom: unset;
+
+        .logo {
+            font-weight: 600;
+        }
+    }
+
+    #sidebar {
+        display: none;
+    }
+
+    #topbar {
+        display: none;
+    }
+
+    .orders {
+        display: none
+    }
+
+    .icon svg {
+        width: 15vh;
+        height: 90%;
+        margin-left: 20px;
+    }
+
+    .content {
+        display: flex;
+        margin: unset;
+        flex-direction: column;
+        padding-top: 25px;
+    }
+
+    .information {
+        display: flex;
+        flex-wrap: wrap;
+        padding: unset;
+        border-radius: unset;
+        gap: 3rem;
+        align-items: center;
+
+    }
+
+    .info-box {
+        padding: unset;
+        margin: unset;
+        padding: unset;
+        margin: unset;
+    }
+
+    .info-box .data {
+        padding: 20px;
+    }
+
+    .info-box .data p {
+        font-size: 1rem;
+        margin-top: 20px;
+
+    }
+
+    #toggle-btn {
+        margin-left: unset;
+        padding: 0.5em;
+    }
+
+    footer {
+        width: unset;
+        display: unset;
+        margin: unset;
+
+        p {
+            margin: 10px;
+        }
+    }
 }

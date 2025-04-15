@@ -1,5 +1,6 @@
 <?php
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['payment_method'])) {
         $paymentMethod = $_POST['payment_method'];
