@@ -42,3 +42,27 @@ document.addEventListener("click", function (event) {
         button.classList.remove("rotate");
     }
 });
+
+function searchUser() {
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toLowerCase();
+    const table = document.getElementsByClassName("table-container")[0];
+    const rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) { // Empieza en 1 para omitir el encabezado
+        const cells = rows[i].getElementsByTagName("td");
+        let match = false;
+
+        for (let j = 0; j < cells.length; j++) {
+            if (cells[j]) {
+                const text = cells[j].textContent || cells[j].innerText;
+                if (text.toLowerCase().indexOf(filter) > -1) {
+                    match = true;
+                    break;
+                }
+            }
+        }
+
+        rows[i].style.display = match ? "" : "none";
+    }
+}

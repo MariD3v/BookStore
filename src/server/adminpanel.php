@@ -49,3 +49,17 @@ function ViewVisitsNumeber()
 
     return $row['visitas'];
 }
+
+function getUsersForTable()
+{
+    global $conn;
+    $stmt = $conn->prepare('SELECT * FROM cliente ORDER BY codigo_cliente ASC');
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $rows = [];
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    return $rows;
+}

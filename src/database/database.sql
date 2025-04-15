@@ -171,6 +171,29 @@ INSERT INTO libro VALUES (70, 'The annihilator', 'Romance', 'B', 324, 'Español'
 
 INSERT INTO cliente VALUES (1, 'Mari', 'Salar Garcia', 'mari.d3v@gmail.com', '4297f44b13955235245b2497399d7a93', 1);
 INSERT INTO cliente VALUES (2, 'Juan', 'Rodríguez Toral', 'imrivenbot@gmail.com', '4297f44b13955235245b2497399d7a93', 1);
+INSERT INTO cliente VALUES 
+(6, 'Lucía', 'Martínez Pérez', 'luciamartinez@example.com', 'e99a18c428cb38d5f260853678922e03', 1),
+(7, 'Carlos', 'González Ruiz', 'cgonzalez@email.com', '5f4dcc3b5aa765d61d8327deb882cf99', 0),
+(8, 'María', 'López Díaz', 'mlopez123@correo.com', '098f6bcd4621d373cade4e832627b4f6', 1),
+(9, 'Andrés', 'Fernández Romero', 'andres.fernandez@dominio.com', '25f9e794323b453885f5181f1b624d0b', 1),
+(10, 'Elena', 'Morales Sánchez', 'elena.morales@example.org', '827ccb0eea8a706c4c34a16891f84e7b', 0),
+(11, 'David', 'Ramírez Torres', 'd.ramirez@email.org', '21232f297a57a5a743894a0e4a801fc3', 1),
+(12, 'Sandra', 'Jiménez Vargas', 'sandrajv@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 0),
+(13, 'Pablo', 'Navarro León', 'pnavarro@email.com', '5ebe2294ecd0e0f08eab7690d2a6ee69', 1),
+(14, 'Laura', 'Castro Molina', 'laura.castro@correo.net', '6cb75f652a9b52798eb6cf2201057c73', 1),
+(15, 'Jorge', 'Serrano Cruz', 'j.serrano@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0),
+(16, 'Raquel', 'Peña Muñoz', 'raquelpm@hotmail.com', '7c6a180b36896a0a8c02787eeafb0e4c', 1),
+(17, 'Alberto', 'Iglesias Ríos', 'aiglesias@ejemplo.com', 'd8578edf8458ce06fbc5bb76a58c5ca4', 1),
+(18, 'Natalia', 'Reyes Cabrera', 'nreyes@correo.org', '5f4dcc3b5aa765d61d8327deb882cf99', 0),
+(19, 'Rubén', 'Delgado Suárez', 'rubensuarez@mail.com', '9e3669d19b675bd57058fd4664205d2a', 1),
+(20, 'Claudia', 'Ortega Paredes', 'claudia.ortega@example.com', '1c383cd30b7c298ab50293adfecb7b18', 1),
+(21, 'Mario', 'Vega Bravo', 'mvegab@example.org', '3c59dc048e8850243be8079a5c74d079', 0),
+(22, 'Patricia', 'Campos Herrera', 'pcampos@dominio.com', 'b2e98ad6f6eb8508dd6a14cfa704bad7', 1),
+(23, 'Víctor', 'Gil Marín', 'victorgilm@example.com', 'e10adc3949ba59abbe56e057f20f883e', 1),
+(24, 'Isabel', 'Ramos Nieto', 'isabelramos@correo.net', 'a87ff679a2f3e71d9181a67b7542122c', 0),
+(25, 'Hugo', 'Méndez Barrios', 'hmendez@ejemplo.com', '0cc175b9c0f1b6a831c399e269772661', 1);
+
+
 
 INSERT INTO compra VALUES (1, 'Pendiente de pago', '2024-11-15 20:34:12','Mari', 'Salar Garcia', 654790769, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1, 23.12);
 INSERT INTO compra VALUES (2, 'Entregado', '2024-08-30 14:23:45','Mari', 'Salar Garcia', 654797969, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1, 45.99);

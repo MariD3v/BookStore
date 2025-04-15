@@ -449,16 +449,8 @@ td svg:hover {
 
 @media (max-width: 768px) {
 
-    * {
-        /* border: 1px solid red; */
-    }
-
     #sidebar>ul>li:first-child {
         display: none;
-    }
-
-    #sidebar {
-        /* display: none; */
     }
 
     #topbar {
