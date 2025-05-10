@@ -15,6 +15,7 @@ if (!isset($_SESSION['administrador']) == 1) {
     <title>Panel de administración | Bookstore</title>
     <link rel="stylesheet" href="../styles/style.css" type="text/css" />
     <link rel="stylesheet" href="../styles/adminpanel.css" type="text/css" />
+    <link rel="stylesheet" href="../styles/adminTable.css" type="text/css" />
     <link rel="shortcut icon" href="../assets/images/admin_panel_icon.webp" type="image/x-icon">
 
 </head>
@@ -52,7 +53,6 @@ if (!isset($_SESSION['administrador']) == 1) {
                     <ul class="sub-menu">
                         <div>
                             <li><a href="./verProductos.php">Ver productos</a></li>
-                            <li><a href="./añadirProducto.php">Añadir producto</a></li>
                         </div>
                     </ul>
                 </li>
@@ -69,7 +69,6 @@ if (!isset($_SESSION['administrador']) == 1) {
                     <ul class="sub-menu">
                         <div>
                             <li><a href="./verUsuario.php">Ver usuarios</a></li>
-                            <li><a href="./AñadirUsuario.php">Añadir usuario</a></li>
                         </div>
                     </ul>
                 </li>
@@ -158,8 +157,10 @@ if (!isset($_SESSION['administrador']) == 1) {
                 </div>
             </div>
             <div class="orders">
-                <div class="recent-orders">
-                    <span>Últimos pedidos</span>
+                <div class="ver-users">
+                    <div class="search-bar">
+                        <h1>Últimos pedidos</h1>
+                    </div>
                     <div class="table-container">
                         <table>
                             <thead>
@@ -170,7 +171,7 @@ if (!isset($_SESSION['administrador']) == 1) {
                                     <th>Fecha</th>
                                     <th>Importe</th>
                                     <th>Estado</th>
-                                    <th>Acciones</th>
+                                    <th>Ver detalles</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -184,13 +185,16 @@ if (!isset($_SESSION['administrador']) == 1) {
                                         echo "<td data-label='Fecha'>" . $order['fecha'] . "</td>";
                                         echo "<td data-label='Total'>" . $order['total'] . "€</td>";
                                         echo "<td data-label='Estado'>" . $order['estado'] . "</td>";
-                                        echo "<td data-label='Acciones'><svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'><path d='M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z'/></svg></td>";
+                                        echo "<td data-label='Ver detalles'>
+                                            <svg class='ver-detalle-btn' data-codigo-compra='" . $order['codigo_compra'] . "'
+                                            xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
+                                                <path d='M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z'/>
+                                            </svg>
+                                            </td>";
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr>";
-                                    echo "<td colspan='7'>No hay pedidos disponibles.</td>";
-                                    echo "</tr>";
+                                    echo "<tr><td colspan='6'>No hay productos disponibles.</td></tr>";
                                 }
                                 ?>
                             </tbody>
@@ -199,6 +203,37 @@ if (!isset($_SESSION['administrador']) == 1) {
                 </div>
             </div>
         </div>
+
+        <div id="orderModal-container" class="orderModal-modal">
+            <div class="orderModal-content">
+                <span class="orderModal-close">&times;</span>
+                <h2 class="orderModal-title">Detalle de la Compra</h2>
+
+                <div class="orderModal-customer">
+                    <p><strong>Nombre:</strong> <span id="orderModal-customer-nombre"></span></p>
+                    <p><strong>Apellidos:</strong> <span id="orderModal-customer-apellidos"></span></p>
+                    <p><strong>Estado:</strong> <span id="orderModal-customer-estado"></span></p>
+                </div>
+
+                <table class="orderModal-table">
+                    <thead>
+                        <tr>
+                            <th>ID Producto</th>
+                            <th>Título</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orderModal-table-body"></tbody>
+                </table>
+
+                <div class="orderModal-total">
+                    <strong>Total del pedido:</strong> <span id="orderModal-total-price">0.00</span> €
+                </div>
+            </div>
+        </div>
+
     </main>
     <footer class="footer-admin">
         <div class="footer-content">

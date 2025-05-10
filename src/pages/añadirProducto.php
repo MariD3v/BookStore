@@ -52,7 +52,6 @@ if (!isset($_SESSION['administrador']) == 1) {
                     <ul class="sub-menu">
                         <div>
                             <li><a href="./verProductos.php">Ver productos</a></li>
-                            <li><a href="./añadirProducto.php">Añadir producto</a></li>
                         </div>
                     </ul>
                 </li>
@@ -69,7 +68,6 @@ if (!isset($_SESSION['administrador']) == 1) {
                     <ul class="sub-menu">
                         <div>
                             <li><a href="./verUsuario.php">Ver usuarios</a></li>
-                            <li><a href="./AñadirUsuario.php">Añadir usuario</a></li>
                         </div>
                     </ul>
                 </li>

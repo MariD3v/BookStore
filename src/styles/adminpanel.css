@@ -213,6 +213,7 @@ header {
     width: 180px;
     padding: 5px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 .dropdown-menu.show {
@@ -308,6 +309,7 @@ header {
 
 }
 
+/* 
 .recent-orders {
     width: 80%;
     height: 80%;
@@ -335,7 +337,7 @@ header {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid var(--line-clr);
-}
+} */
 
 
 td svg {
@@ -353,14 +355,14 @@ td svg:hover {
     fill: var(--acent-clr);
 }
 
-.recent-orders {
+/* .recent-orders {
     box-sizing: content-box;
     overflow: hidden;
 }
 
 .recent-orders table {
     overflow-y: auto;
-}
+} */
 
 .table-container {
     max-height: 500px;
@@ -449,56 +451,13 @@ td svg:hover {
 
 @media (max-width: 768px) {
 
+
     #sidebar>ul>li:first-child {
         display: none;
     }
 
     #topbar {
         display: none;
-    }
-
-
-    .recent-orders table,
-    .recent-orders thead,
-    .recent-orders tbody,
-    .recent-orders th,
-    .recent-orders td,
-    .recent-orders tr {
-        display: block;
-        width: 100%;
-    }
-
-    .recent-orders thead {
-        display: none;
-    }
-
-    .recent-orders tr {
-        margin-bottom: 1rem;
-        background-color: var(--base-clr);
-        border-radius: .5rem;
-        padding: 1rem;
-    }
-
-    .recent-orders td {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.75rem 1rem;
-        text-align: left;
-        border-bottom: 1px solid var(--line-clr);
-        position: relative;
-    }
-
-    .recent-orders td::before {
-        content: attr(data-label);
-        font-weight: bold;
-        color: var(--secondary-text-clr);
-        flex-basis: 50%;
-        text-align: left;
-    }
-
-    .recent-orders td:last-child {
-        border-bottom: none;
     }
 
     td[data-label="Código"] {
@@ -564,4 +523,88 @@ td svg:hover {
 
         right: 10px;
     }
+}
+
+.orderModal-modal {
+    display: block;
+    position: fixed;
+    z-index: 5000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.orderModal-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.orderModal-modal.close {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.orderModal-content {
+    background-color: var(--base-clr);
+    margin: 8% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 600px;
+    max-width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.orderModal-modal.show .orderModal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.orderModal-modal.close .orderModal-content {
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+.orderModal-close {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-clr);
+}
+
+.orderModal-title {
+    margin-top: 0;
+    font-size: 22px;
+    text-align: center;
+}
+
+.orderModal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.orderModal-table th,
+.orderModal-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.orderModal-total {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 16px;
 }

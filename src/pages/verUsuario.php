@@ -52,7 +52,6 @@ if (!isset($_SESSION['administrador']) == 1) {
                     <ul class="sub-menu">
                         <div>
                             <li><a href="./verProductos.php">Ver productos</a></li>
-                            <li><a href="./añadirProducto.php">Añadir producto</a></li>
                         </div>
                     </ul>
                 </li>
@@ -69,7 +68,6 @@ if (!isset($_SESSION['administrador']) == 1) {
                     <ul class="sub-menu">
                         <div>
                             <li><a href="./verUsuario.php">Ver usuarios</a></li>
-                            <li><a href="./AñadirUsuario.php">Añadir usuario</a></li>
                         </div>
                     </ul>
                 </li>
@@ -125,6 +123,7 @@ if (!isset($_SESSION['administrador']) == 1) {
             <div class="users">
                 <div class="ver-users">
                     <div class="search-bar">
+                        <h1>Lista de usuarios</h1>
                         <input type="text" id="searchInput" placeholder="Buscar usuario..." onkeyup="searchUser()" />
                     </div>
                     <div class="table-container">
@@ -143,18 +142,26 @@ if (!isset($_SESSION['administrador']) == 1) {
                                 <?php
                                 if (!empty(getUsersForTable())) {
                                     foreach (getUsersForTable() as $users) {
-                                        echo "<tr>";
-                                        echo "<td data-label='Código de cliente'>" . $users['codigo_cliente'] . "</td>";
-                                        echo "<td data-label='Nombre'>" . $users['nombre'] . "</td>";
-                                        echo "<td data-label='Apellidos'>" . $users['apellidos'] . "</td>";
-                                        echo "<td data-label='Correo electrónico'>" . $users['email'] . "</td>";
-                                        if ($users['administrador'] == 1) {
-                                            echo "<td data-label='Rol'>Administrador</td>";
+                                        if ($users['nombre'] == $_SESSION['user_name'] && $users['apellidos'] == $_SESSION['user_surname'] && $users['email'] == $_SESSION['user_email']) {
+                                            continue;
                                         } else {
-                                            echo "<td data-label='Rol'>Usuario</td>";
+                                            echo "<tr>";
+                                            echo "<td data-label='Código de cliente'>" . $users['codigo_cliente'] . "</td>";
+                                            echo "<td data-label='Nombre'>" . $users['nombre'] . "</td>";
+                                            echo "<td data-label='Apellidos'>" . $users['apellidos'] . "</td>";
+                                            echo "<td data-label='Correo electrónico'>" . $users['email'] . "</td>";
+                                            if ($users['administrador'] == 1) {
+                                                echo "<td data-label='Rol'>Administrador</td>";
+                                            } else {
+                                                echo "<td data-label='Rol'>Usuario</td>";
+                                            }
+                                            echo "<td data-label='Acciones'>
+                                                <svg class='delete-btn' data-user-id='" . $users['codigo_cliente'] . "' data-user-email='" . $users['email'] . "' data-user-name='" . $users['nombre'] . "' data-user-surnames='" . $users['apellidos'] . "'
+                                                xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
+                                                    <path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z'/>
+                                                </svg>";
+                                            echo "</tr>";
                                         }
-                                        echo "<td data-label='Acciones'><svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'><path d='M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z'/></svg></td>";
-                                        echo "</tr>";
                                     }
                                 }
                                 ?>

@@ -58,6 +58,14 @@
 .search-bar {
     margin-bottom: 1rem;
     text-align: right;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+td {
+    content: attr(data-label);
 }
 
 .search-bar input {
@@ -74,10 +82,23 @@
     color: var(--secondary-text-clr);
 }
 
+.actions {
+    display: flex;
+}
+
+.table-container table thead tr th {
+    position: sticky;
+    top: 0;
+    background-color: var(--base-clr);
+    z-index: 1;
+}
+
 @media (max-width: 768px) {
     .ver-users {
         padding: unset;
         margin: unset;
+        width: 100vw;
+        margin: 0 auto;
     }
 
     .ver-users table,
@@ -87,7 +108,6 @@
     .ver-users td,
     .ver-users tr {
         display: block;
-        width: 100%;
     }
 
     .ver-users thead {
@@ -121,6 +141,7 @@
 
     .ver-users td:last-child {
         border-bottom: none;
+        display: none;
     }
 
     .search-bar {
@@ -132,7 +153,8 @@
         margin: 0 auto;
         width: 100%;
         text-align: center;
-        margin-bottom: 1.5rem;
+        margin-bottom: 15px;
+        padding: unset;
     }
 
     .search-bar input {
@@ -142,16 +164,21 @@
     }
 
     .table-container {
-        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: 0 auto;
         width: 100%;
     }
-}
 
+    .table-container table thead tr th {
+        position: unset;
+        top: unset;
+        z-index: unset;
+    }
 
-* {
-    /* border: 1px solid red; */
+    .search-bar h1 {
+        text-align: left;
+        margin-bottom: 25px;
+    }
 }

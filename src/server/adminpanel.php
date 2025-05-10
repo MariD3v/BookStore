@@ -63,3 +63,49 @@ function getUsersForTable()
     }
     return $rows;
 }
+
+function getProductsForTable()
+{
+    global $conn;
+    $stmt = $conn->prepare('SELECT * FROM libro ORDER BY codigo_libro ASC');
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $rows = [];
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    return $rows;
+}
+
+
+function getAuthorsById($id)
+{
+    global $conn;
+    $stmt = $conn->prepare('SELECT * FROM autor WHERE codigo_autor = ?');
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $authors = [];
+    while ($row = $result->fetch_assoc()) {
+        $authors[] = $row;
+    }
+    return $authors;
+}
+
+
+function getOrderbyId($id)
+{
+    global $conn;
+    $stmt = $conn->prepare('SELECT * FROM compra WHERE codigo_compra = ?');
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $orders = [];
+    while ($row = $result->fetch_assoc()) {
+        $orders[] = $row;
+    }
+    return $orders;
+}
