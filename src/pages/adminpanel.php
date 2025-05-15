@@ -147,7 +147,7 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                 <div class="info-box">
                     <div class="data">
                         <span><?php echo ViewVisitsNumeber() ?></span>
-                        <p>Visitas diarias</p>
+                        <p>Visitas totales</p>
                     </div>
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
