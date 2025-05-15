@@ -3,7 +3,7 @@ include("../server/profile.php");
 include("../server/adminpanel.php");
 
 
-if (!isset($_SESSION['administrador']) == 1) {
+if (!checkUserPerms($_SESSION['user_id'])) {
     header("Location: ../index.php");
 }
 ?>

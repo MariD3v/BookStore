@@ -109,3 +109,16 @@ function getOrderbyId($id)
     }
     return $orders;
 }
+
+
+function checkUserPerms($user_id)
+{
+    global $conn;
+    $stmt = $conn->prepare('SELECT administrador FROM cliente WHERE codigo_cliente = ?');
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    return $row['administrador'] == 1;
+}
