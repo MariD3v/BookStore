@@ -16,25 +16,26 @@ if (isset($_POST['iniciar_sesion'])) {
 
     if (strlen($client_email) == 0) {
         header('location: iniciar-sesion.php?errorEma=Introduce un email');
+        exit();
     } else if (strlen($client_pass) == 0) {
         header('location: iniciar-sesion.php?errorPass=Introduce una contraseña');
+        exit();
     } else {
-        $stmt = $conn->prepare("SELECT codigo_cliente, nombre, apellidos, email, contraseña, administrador FROM cliente WHERE email = ? AND contraseña = ? LIMIT 1");
-
-        $stmt->bind_param('ss', $client_email, md5($client_pass));
+        $password_hashed = md5($client_pass);
+        $stmt = $conn->prepare("SELECT codigo_cliente, nombre, apellidos, email, contraseña FROM cliente WHERE email = ? AND contraseña = ? LIMIT 1");
+        $stmt->bind_param('ss', $client_email, $password_hashed);
 
         if ($stmt->execute()) {
-            $stmt->bind_result($codigo_cliente, $nombre, $apellidos, $email, md5($contraseña), $administrador);
+            $stmt->bind_result($codigo_cliente, $nombre, $apellidos, $email, $contraseña_db);
             $stmt->store_result();
 
             if ($stmt->num_rows() == 1) {
-                $row = $stmt->fetch();
+                $stmt->fetch();
 
                 $_SESSION['user_id'] = $codigo_cliente;
+                $_SESSION['user_email'] = $email;
                 $_SESSION['user_name'] = $nombre;
                 $_SESSION['user_surname'] = $apellidos;
-                $_SESSION['user_email'] = $email;
-                $_SESSION['administrador'] = $administrador;
                 $_SESSION['logged_in'] = true;
 
                 header('location:perfil.php');
