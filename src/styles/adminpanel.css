@@ -907,6 +907,7 @@ td svg:hover {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
+
 }
 
 .updateBookModal-actions button:first-child {
