@@ -1,5 +1,19 @@
 <?php
 include("../server/getProductsCarrito.php");
+include("../server/checkProduct.php");
+
+function checkProductosInactivos()
+{
+    foreach ($_SESSION['cart'] as $key => $product) {
+        if (!checkStatus($product['product_id'])) {
+            unset($_SESSION['cart'][$key]);
+            calculateTotal();
+        }
+    }
+}
+
+checkProductosInactivos();
+
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +103,7 @@ include("../server/getProductsCarrito.php");
         </div>
     </main>
 
-<footer>
+    <footer>
         <div class="links">
             <a href="https://github.com/IAmRiven" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">

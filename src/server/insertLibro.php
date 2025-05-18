@@ -14,17 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $serie              = $_POST['serie'] ?? null;
     $numero             = $_POST['numero'] ?? null;
     $codigo_autor       = $_POST['codigo_autor'];
+    $activado           = intval($_POST['activado'] ?? 1);
 
     try {
         $sql = "INSERT INTO libro (
                     titulo, genero, editorial, n_pag, idioma, 
                     fecha_publ, encuadernacion, precio, 
-                    descripcion_libro, serie, numero, codigo_autor
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    descripcion_libro, serie, numero, codigo_autor, activado
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param(
-            "sssissdsssii",
+            "sssissdsssiii",
             $titulo,
             $genero,
             $editorial,
@@ -36,8 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $descripcion_libro,
             $serie,
             $numero,
-            $codigo_autor
+            $codigo_autor,
+            $activado
         );
+
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => 'Libro insertado correctamente.']);

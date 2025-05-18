@@ -67,7 +67,7 @@ if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
             </div>
         </form>
     </main>
-<footer>
+    <footer>
         <div class="links">
             <a href="https://github.com/IAmRiven" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">

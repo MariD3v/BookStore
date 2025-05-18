@@ -127,7 +127,7 @@
 
 /* Responsive móvil (igual que la versión anterior) */
 
-@media (max-width: 768px) {
+@media (max-width: 1646px) {
     #resumen-pedido-container {
         padding: 20px 15px;
     }

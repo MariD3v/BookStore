@@ -100,7 +100,7 @@ td {
     z-index: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1646px) {
     .ver-users {
         padding: unset;
         margin: unset;

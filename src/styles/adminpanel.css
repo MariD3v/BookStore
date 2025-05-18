@@ -309,37 +309,6 @@ header {
 
 }
 
-/* 
-.recent-orders {
-    width: 80%;
-    height: 80%;
-    border-radius: 5px;
-    background-color: var(--base-clr);
-    padding: 2rem;
-    margin: 1rem;
-    border-color: var(--line-clr);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.recent-orders span {
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-.recent-orders table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.recent-orders table th,
-.recent-orders table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid var(--line-clr);
-} */
-
-
 td svg {
     width: 25px;
     height: 25px;
@@ -354,15 +323,6 @@ td svg {
 td svg:hover {
     fill: var(--acent-clr);
 }
-
-/* .recent-orders {
-    box-sizing: content-box;
-    overflow: hidden;
-}
-
-.recent-orders table {
-    overflow-y: auto;
-} */
 
 .table-container {
     max-height: 500px;
@@ -418,7 +378,7 @@ td svg:hover {
     transition: fill 0.3s ease;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1646px) {
 
     main {
         grid-template-columns: 1fr;
@@ -449,7 +409,7 @@ td svg:hover {
 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1646px) {
 
 
     #sidebar>ul>li:first-child {

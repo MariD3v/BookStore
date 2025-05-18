@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $serie              = $_POST['serie'] ?? null;
     $numero             = $_POST['numero'] ?? null;
     $codigo_autor       = $_POST['codigo_autor'] ?? null;
+    $activado           = intval($_POST['activado'] ?? 1);
 
     if (!$codigo_libro) {
         echo json_encode(['success' => false, 'message' => 'Código del libro no proporcionado.']);
@@ -35,12 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     descripcion_libro = ?, 
                     serie = ?, 
                     numero = ?, 
-                    codigo_autor = ?
+                    codigo_autor = ?,
+                    activado = ?
                 WHERE codigo_libro = ?";
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param(
-            "sssisssdsssii",
+            "sssisssdsssiii",
             $titulo,
             $genero,
             $editorial,
@@ -53,8 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $serie,
             $numero,
             $codigo_autor,
+            $activado,
             $codigo_libro
         );
+
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => 'Libro actualizado correctamente.']);

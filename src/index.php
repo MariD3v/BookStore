@@ -1,6 +1,7 @@
 <?php
 include("server/getProducts.php");
 include("server/CountVisits.php");
+include("server/checkProduct.php");
 
 ?>
 
@@ -132,13 +133,16 @@ include("server/CountVisits.php");
                         echo "<h1>No hay resultado para su búsqueda</h1>";
                     } else {
                         while ($libro = $libros_xP->fetch_assoc()) { ?>
-                            <a class="book" href=<?php echo "pages/libro.php?codigo_libro=" . $libro["codigo_libro"]; ?>>
-                                <img class="portada" src="assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png">
-                                <p class="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></p>
-                                <div class="buttoncarro"><img src="assets/images/buttoncarro.png" alt="añadir a la cesta" height="35px"></div>
-                                <p class="precio"><?php echo $libro["precio"] ?></p>
-                            </a>
+                            <?php
+                            if (checkIfProductoIsActive($libro['codigo_libro'])) { ?>
+                                <a class="book" href=<?php echo "pages/libro.php?codigo_libro=" . $libro["codigo_libro"]; ?>>
+                                    <img class="portada" src="assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png">
+                                    <p class="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></p>
+                                    <div class="buttoncarro"><img src="assets/images/buttoncarro.png" alt="añadir a la cesta" height="35px"></div>
+                                    <p class="precio"><?php echo $libro["precio"] ?></p>
+                                </a>
                     <?php }
+                        }
                     } ?>
                 </div>
                 <?php

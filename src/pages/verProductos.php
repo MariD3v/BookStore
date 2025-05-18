@@ -134,6 +134,7 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                                     <th>Serie</th>
                                     <th>Número</th>
                                     <th>Autores</th>
+                                    <th>Activado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -160,7 +161,13 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                                         } else {
                                             echo "Sin autores";
                                         }
-
+                                        echo "</td>";
+                                        echo "<td style='text-align: center;'";
+                                        if ($products['activado'] == 1) {
+                                            echo "<p>Sí</p>";
+                                        } else {
+                                            echo "<p>No</p>";
+                                        }
                                         echo "</td>";
                                         echo "<td data-label='Acciones' class='actions'>";
                                         echo "<svg class='editar-modal-btn' data-codigo-libro='{$products['codigo_libro']}' xmlns='http://www.w3.org/2000/svg' 
@@ -245,6 +252,12 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                     ?>
                 </select>
 
+                <label for="edit-activado">Activado:</label>
+                <select id="edit-activado" name="activado" required>
+                    <option value="1">Sí</option>
+                    <option value="0">No</option>
+                </select>
+
                 <div class="editBookModal-actions">
                     <button type="button" onclick="guardarLibro()">Guardar Cambios</button>
                     <button type=" button" class="editBookModal-cancel">Cancelar</button>
@@ -312,6 +325,12 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                         echo "<option value='0'>Sin autores</option>";
                     }
                     ?>
+                </select>
+
+                <label for="update-activado">Activado:</label>
+                <select id="update-activado" name="activado" required>
+                    <option value="1">Sí</option>
+                    <option value="0">No</option>
                 </select>
 
                 <div class="updateBookModal-actions">

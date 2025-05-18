@@ -291,6 +291,8 @@ function mostrarFormularioEdicionLibro(libro) {
     document.getElementById('edit-serie').value = libro.serie || '';
     document.getElementById('edit-numero').value = libro.numero || '';
     document.getElementById('edit-codigo_autor').value = libro.codigo_autor || '';
+    document.getElementById('edit-activado').value = libro.activado;
+    console.log(libro.activado);
 
     modal.classList.remove('close');
     modal.classList.add('show');
@@ -400,7 +402,11 @@ function insertarLibro() {
     }
 
     const formData = new FormData(form);
-    console.log(formData.entries());
+
+    console.log('Datos del formulario:');
+    for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+    }
 
     let precio = formData.get('precio');
     if (precio) {
