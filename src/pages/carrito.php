@@ -90,7 +90,7 @@ include("../server/getProductsCarrito.php");
     </main>
 
     <footer>
-        <p>Página web realizada por Maria Salar Garcia</p>
+        <p>&copy; <?php echo (date("Y")) ?> Bookstore. Todos los derechos reservados.</p>
         <div class="links">
             <a href="https://github.com/LittleMari" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">

@@ -35,6 +35,7 @@ include("../server/getProductsAutor.php");
                 </form>
             </div>
         </nav>
+        <?php if(isset($autor["codigo_autor"])){?>
         <div class="book-author-container">
             <div class="firstline">
                 <img class="imagen-author" src="../assets/images/author_photos/<?php echo ($autor["codigo_autor"]) ?>.png" />
@@ -84,8 +85,11 @@ include("../server/getProductsAutor.php");
             </div>
         </div>
     </main>
+    <?php } else {
+        echo "<div style=\"text-align:center; margin:10%\"><h1 style=\"color:white; font-size:30px\">Autor no disponible</h1><p style=\"color:white\">El autor al que intenta acceder no se encuentra disponible actualmente</p></div>";
+    }?>
     <footer>
-        <p>Página web realizada por Maria Salar Garcia</p>
+        <p>&copy; <?php echo (date("Y")) ?> Bookstore. Todos los derechos reservados.</p>
         <div class="links">
             <a href="https://github.com/MariD3v" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">

@@ -36,94 +36,97 @@ include("../server/getProductsLibro.php");
                 </form>
             </div>
         </nav>
-
-        <div class="book-author-container">
-            <div class="firstline">
-                <img class="imagen-book" src="../assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png" />
-                <div class="atributos-book-author">
-                    <h1 id="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></h1>
-                    <a id="autor" href="autor.php?codigo_autor=<?php echo $autor['codigo_autor']; ?>"><?php echo mb_strtoupper($autor["nombre"]) ?></a>
-                    <div id="precioygenero">
-                        <p><?php echo ($libro["genero"]) ?></p>
-                        <p class="precio€"><?php echo ($libro["precio"]) ?></p>
+        <?php if(isset($libro["codigo_libro"])){?>
+            <div class="book-author-container">
+                <div class="firstline">
+                    <img class="imagen-book" src="../assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png" />
+                    <div class="atributos-book-author">
+                        <h1 id="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></h1>
+                        <a id="autor" href="autor.php?codigo_autor=<?php echo $autor['codigo_autor']; ?>"><?php echo mb_strtoupper($autor["nombre"]) ?></a>
+                        <div id="precioygenero">
+                            <p><?php echo ($libro["genero"]) ?></p>
+                            <p class="precio€"><?php echo ($libro["precio"]) ?></p>
+                        </div>
+                        <p class="descripcion"><?php echo ($libro["descripcion_libro"]) ?>
+                        </p>
                     </div>
-                    <p class="descripcion"><?php echo ($libro["descripcion_libro"]) ?>
-                    </p>
                 </div>
+                <form method="POST" action="carrito.php">
+                    <input type="hidden" name="product_id" value="<?php echo $libro["codigo_libro"] ?>"/>
+                    <input type="hidden" name="product_name" value="<?php echo mb_strtoupper($libro["titulo"]) ?>"/>
+                    <input type="hidden" name="product_price" value="<?php echo ($libro["precio"]) ?>"/>
+                    <input type="hidden" name="product_author" value="<?php echo mb_strtoupper($autor["nombre"]) ?>"/>
+                    <input type="hidden" name="product_quantity" value="1"/>
+                    <button class="añadircestabutton" type="submit" name="add_product">Añadir a la cesta</button>
+                </form>
+                <fieldset class="fichatecnica">
+                    <legend>Ficha técnica</legend>
+                    <p>Nº de paginas</p>
+                    <p> <?php echo ($libro["n_pag"]) ?> </p>
+                    <p>Editorial</p>
+                    <p> <?php echo ($libro["editorial"]) ?> </p>
+                    <p>Idioma</p>
+                    <p> <?php echo ($libro["idioma"]) ?> </p>
+                    <p>Encuadernación</p>
+                    <p> <?php echo ($libro["encuadernacion"]) ?> </p>
+                    <p>Fecha de lanzamiento</p>
+                    <p> <?php echo ($libro["fecha_publ"]) ?> </p>
+                    <p>Serie/Saga</p>
+                    <p> <?php if ($libro["serie"] === null) {
+                            echo "No";
+                        } else {
+                            echo ($libro["serie"]) ?> </p>
+                    <p>Número</p>
+                    <p><?php echo ($libro["numero"]) ?> </p>
+                </fieldset>
+            <?php } ?>
             </div>
-            <form method="POST" action="carrito.php">
-                <input type="hidden" name="product_id" value="<?php echo $libro["codigo_libro"] ?>"/>
-                <input type="hidden" name="product_name" value="<?php echo mb_strtoupper($libro["titulo"]) ?>"/>
-                <input type="hidden" name="product_price" value="<?php echo ($libro["precio"]) ?>"/>
-                <input type="hidden" name="product_author" value="<?php echo mb_strtoupper($autor["nombre"]) ?>"/>
-                <input type="hidden" name="product_quantity" value="1"/>
-                <button class="añadircestabutton" type="submit" name="add_product">Añadir a la cesta</button>
-            </form>
-            <fieldset class="fichatecnica">
-                <legend>Ficha técnica</legend>
-                <p>Nº de paginas</p>
-                <p> <?php echo ($libro["n_pag"]) ?> </p>
-                <p>Editorial</p>
-                <p> <?php echo ($libro["editorial"]) ?> </p>
-                <p>Idioma</p>
-                <p> <?php echo ($libro["idioma"]) ?> </p>
-                <p>Encuadernación</p>
-                <p> <?php echo ($libro["encuadernacion"]) ?> </p>
-                <p>Fecha de lanzamiento</p>
-                <p> <?php echo ($libro["fecha_publ"]) ?> </p>
-                <p>Serie/Saga</p>
-                <p> <?php if ($libro["serie"] === null) {
-                        echo "No";
-                    } else {
-                        echo ($libro["serie"]) ?> </p>
-                <p>Número</p>
-                <p><?php echo ($libro["numero"]) ?> </p>
-            </fieldset>
-        <?php } ?>
-        </div>
-        <?php if ($librosGenero_consulta->num_rows != 0) { ?>
-            <div class="recomendaciones-container">
-                <p class="recomendaciones-text">Similares a <span><?php echo mb_strtoupper($libro["titulo"]) ?></span></p>
-                <hr>
-                <div class="carrusel">
-                    <button class="carruselnext carruselbton-btn">◀</button>
-                    <div class="carruselcatalogo catalogo">
-                        <?php while ($libro = $librosGenero_consulta->fetch_assoc()) { ?>
-                            <a class="book" href=<?php echo "libro.php?codigo_libro=" . $libro["codigo_libro"]; ?>>
-                                <img class="portada" src="../assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png">
-                                <p class="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></p>
-                                <button class="buttoncarro"><img src="../assets/images/buttoncarro.png" alt="añadir a la cesta" height="35px"></button>
-                                <p class="precio"><?php echo $libro["precio"] ?></p>
-                            </a>
-                        <?php } ?>
+            <?php if ($librosGenero_consulta->num_rows != 0) { ?>
+                <div class="recomendaciones-container">
+                    <p class="recomendaciones-text">Similares a <span><?php echo mb_strtoupper($libro["titulo"]) ?></span></p>
+                    <hr>
+                    <div class="carrusel">
+                        <button class="carruselnext carruselbton-btn">◀</button>
+                        <div class="carruselcatalogo catalogo">
+                            <?php while ($libro = $librosGenero_consulta->fetch_assoc()) { ?>
+                                <a class="book" href=<?php echo "libro.php?codigo_libro=" . $libro["codigo_libro"]; ?>>
+                                    <img class="portada" src="../assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png">
+                                    <p class="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></p>
+                                    <button class="buttoncarro"><img src="../assets/images/buttoncarro.png" alt="añadir a la cesta" height="35px"></button>
+                                    <p class="precio"><?php echo $libro["precio"] ?></p>
+                                </a>
+                            <?php } ?>
+                        </div>
+                        <button class="carruselprev carruselbton-btn">▶</button>
                     </div>
-                    <button class="carruselprev carruselbton-btn">▶</button>
                 </div>
-            </div>
-        <?php } ?>
-        <?php if ($librosAutor_consulta->num_rows != 0) { ?>
-            <div class="recomendaciones-container">
-                <p class="recomendaciones-text">Otros libros de <span><?php echo mb_strtoupper($autor["nombre"]) ?></span></p>
-                <hr>
-                <div class="carrusel">
-                    <button class="carruselnext carruselbton-btn">◀</button>
-                    <div class="catalogo">
-                        <?php while ($libro = $librosAutor_consulta->fetch_assoc()) { ?>
-                            <a class="book" href=<?php echo "libro.php?codigo_libro=" . $libro["codigo_libro"]; ?>>
-                                <img class="portada" src="../assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png">
-                                <p class="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></p>
-                                <button class="buttoncarro"><img src="../assets/images/buttoncarro.png" alt="añadir a la cesta" height="35px"></button>
-                                <p class="precio"><?php echo $libro["precio"] ?></p>
-                            </a>
-                        <?php } ?>
+            <?php } ?>
+            <?php if ($librosAutor_consulta->num_rows != 0) { ?>
+                <div class="recomendaciones-container">
+                    <p class="recomendaciones-text">Otros libros de <span><?php echo mb_strtoupper($autor["nombre"]) ?></span></p>
+                    <hr>
+                    <div class="carrusel">
+                        <button class="carruselnext carruselbton-btn">◀</button>
+                        <div class="catalogo">
+                            <?php while ($libro = $librosAutor_consulta->fetch_assoc()) { ?>
+                                <a class="book" href=<?php echo "libro.php?codigo_libro=" . $libro["codigo_libro"]; ?>>
+                                    <img class="portada" src="../assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png">
+                                    <p class="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></p>
+                                    <button class="buttoncarro"><img src="../assets/images/buttoncarro.png" alt="añadir a la cesta" height="35px"></button>
+                                    <p class="precio"><?php echo $libro["precio"] ?></p>
+                                </a>
+                            <?php } ?>
+                        </div>
+                        <button class="carruselprev carruselbton-btn">▶</button>
                     </div>
-                    <button class="carruselprev carruselbton-btn">▶</button>
                 </div>
-            </div>
-        <?php } ?>
+            <?php } 
+        } else {
+            echo "<div style=\"text-align:center; margin:10%\"><h1 style=\"color:white; font-size:30px\">Producto no disponible</h1><p style=\"color:white\">Explora multitud de libros desde nuestra página principal</p></div>";
+        }?>
     </main>
     <footer>
-        <p>Página web realizada por Maria Salar Garcia</p>
+        <p>&copy; <?php echo (date("Y")) ?> Bookstore. Todos los derechos reservados.</p>
         <div class="links">
             <a href="https://github.com/MariD3v" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">
