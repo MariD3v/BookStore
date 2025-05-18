@@ -18,7 +18,7 @@ function checkPayPal(preciototal) {
             });
         },
         onCancel: function (data) {
-            console.log('Pago cancelado', data);
+            window.location.href = 'compra-cancelada.php?order_status=Compra cancelada';
         },
         onApprove: async function (data, actions) {
             try {

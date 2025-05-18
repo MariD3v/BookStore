@@ -1,13 +1,180 @@
-.resumenLibro {
+#resumen-pedido-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+    border: 1px solid #e5e5e5;
+}
+
+#resumen-pedido-container h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    color: #111;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #0071bc;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.contenido-resumen {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 0;
+    gap: 60px;
+    justify-content: flex-start;
+}
+
+.datos-pago,
+.resumen-compra {
+    background-color: #f9f9f9;
+    border: 1px solid #d8d8d8;
+    border-radius: 10px;
+    padding: 25px 30px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
+}
+
+.datos-pago {
+    flex: 0 0 45%;
+}
+
+.resumen-compra {
+    flex: 0 0 49%;
+}
+
+.datos-pago h3,
+.resumen-compra h3 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: #0071bc;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+}
+
+.datos-pago p,
+.item-compra p {
+    margin: 12px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #444;
+}
+
+.item-compra {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.item-compra:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.item-compra strong {
+    font-weight: 700;
+    margin-right: 8px;
+    color: #111;
+}
+
+.item-compra em {
+    font-style: normal;
+    color: #666;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 3px;
+}
+
+.precio-total {
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 2px solid #0071bc;
+    text-align: right;
+}
+
+.precio-total {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.precio-total .pay {
+    flex: 0 0 28%;
+}
+
+#buttoncontainer {
+    margin-top: 50px;
+    display: unset !important;
+    justify-content: unset !important;
+}
+
+.precio-total h3 {
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    color: #0071bc;
+}
+
+.precio-total p {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #111;
     margin: 0;
 }
 
-.resumenLibroInfo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+/* Responsive móvil (igual que la versión anterior) */
+
+@media (max-width: 768px) {
+    #resumen-pedido-container {
+        padding: 20px 15px;
+    }
+
+    #resumen-pedido-container h2 {
+        text-align: center;
+        border-bottom: none;
+        margin-bottom: 20px;
+    }
+
+    .contenido-resumen {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .datos-pago,
+    .resumen-compra {
+        flex: 1 1 100%;
+        padding: 20px;
+        border: 1px solid #ddd;
+        box-shadow: none;
+        background-color: #fff;
+    }
+
+    .datos-pago h3,
+    .resumen-compra h3 {
+        border-bottom: none;
+        margin-bottom: 15px;
+        color: #222;
+        font-size: 1.3rem;
+    }
+
+    .precio-total {
+        text-align: center;
+        border-top: 1px solid #ddd;
+        margin-top: 20px;
+        padding-top: 15px;
+    }
+
+    .precio-total h3 {
+        font-size: 1.3rem;
+        color: #222;
+        margin-bottom: 6px;
+    }
+
+    .precio-total p {
+        font-size: 1.4rem;
+        color: #000;
+    }
 }

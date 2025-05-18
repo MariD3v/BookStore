@@ -100,14 +100,6 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
-                                    <path d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
-                                </svg>
-                                <span>Configuración</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="perfil.php?cerrarsesion=1">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
                                     <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
@@ -124,7 +116,10 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                 <div class="ver-users">
                     <div class="search-bar">
                         <h1>Lista de productos</h1>
-                        <input type="text" id="searchInput" placeholder="Buscar libro.." onkeyup="searchProducts()" />
+                        <div class="search-options">
+                            <button class="btn-product" onclick="abrirModalNuevoLibro()">➕</button>
+                            <input type="text" id="searchInput" placeholder="Buscar libro.." onkeyup="searchProducts()" />
+                        </div>
                     </div>
                     <div class="table-container">
                         <table>
@@ -136,7 +131,6 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                                     <th>Editorial</th>
                                     <th>Idioma</th>
                                     <th>Precio</th>
-                                    <th>Descripción</th>
                                     <th>Serie</th>
                                     <th>Número</th>
                                     <th>Autores</th>
@@ -154,12 +148,6 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                                         echo "<td data-label='Editorial'>" . $products['editorial'] . "</td>";
                                         echo "<td data-label='Idioma'>" . $products['idioma'] . "</td>";
                                         echo "<td data-label='Precio'>" . $products['precio'] . "</td>";
-                                        echo "<td data-label='Descripción'>
-                                        <svg onclick='verDescripcionLibro(\"{$products['descripcion_libro']}\")'
-                                        xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
-                                        <path d='M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM480-80 373-240H160q-33 0-56.5-23.5T80-320v-480q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H587L480-80Zm0-144 64-96h256v-480H160v480h256l64 96Zm0-336Z'/>
-                                        </svg>
-                                        </td>";
                                         echo "<td data-label='Serie'>" . $products['serie'] . "</td>";
                                         echo "<td data-label='Número'>" . $products['numero'] . "</td>";
                                         echo "<td data-label='Autores'>";
@@ -174,9 +162,15 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                                         }
 
                                         echo "</td>";
-                                        echo "<td data-label='Acciones'>";
-                                        echo "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'><path d='M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z'/></svg>";
-                                        echo "</tr>";
+                                        echo "<td data-label='Acciones' class='actions'>";
+                                        echo "<svg class='editar-modal-btn' data-codigo-libro='{$products['codigo_libro']}' xmlns='http://www.w3.org/2000/svg' 
+                                                height='24px'viewBox='0 -960 960 960' width='24px' fill='#e3e3e3' style='cursor:pointer'>
+                                                <path d='M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z'/>
+                                            </svg>
+                                            <svg class='delete-btn-product' data-codigo-libro='" . $products['codigo_libro'] . "xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'>
+                                                    <path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z'/>
+                                                </svg>";
+                                        echo "</td>";
                                     }
                                 } else {
                                     echo "<tr><td colspan='6'>No hay productos disponibles.</td></tr>";
@@ -189,6 +183,145 @@ if (!checkUserPerms($_SESSION['user_id'])) {
             </div>
         </div>
     </main>
+    <div id="editBookModal-container" class="editBookModal-modal">
+        <div class="editBookModal-content">
+            <span class="editBookModal-close">&times;</span>
+            <h2 class="editBookModal-title">Editar Libro</h2>
+
+            <form id="editBookForm">
+                <input type="hidden" id="edit-codigo_libro" name="codigo_libro">
+
+                <label for="edit-titulo">Título:</label>
+                <input type="text" id="edit-titulo" name="titulo" required maxlength="40">
+
+                <label for="edit-genero">Género:</label>
+                <input type="text" id="edit-genero" name="genero" required maxlength="40">
+
+                <label for="edit-editorial">Editorial:</label>
+                <input type="text" id="edit-editorial" name="editorial" required maxlength="30">
+
+                <label for="edit-n_pag">Nº de Páginas:</label>
+                <input type="number" id="edit-n_pag" name="n_pag" required min="1">
+
+                <label for="edit-idioma">Idioma:</label>
+                <select id="edit-idioma" name="idioma" required>
+                    <option value="Español">Español</option>
+                    <option value="Inglés">Inglés</option>
+                </select>
+
+                <label for="edit-fecha_publ">Fecha de Publicación:</label>
+                <input type="date" id="edit-fecha_publ" name="fecha_publ" required>
+
+                <label for="edit-encuadernacion">Encuadernación:</label>
+                <select id="edit-encuadernacion" name="encuadernacion" required>
+                    <option value="Tapa blanda">Tapa blanda</option>
+                    <option value="Tapa dura">Tapa dura</option>
+                </select>
+
+                <label for="edit-precio">Precio (€):</label>
+                <input type="number" id="edit-precio" name="precio" required step="0.01" min="0">
+
+                <label for="edit-descripcion_libro">Descripción:</label>
+                <textarea id="edit-descripcion_libro" name="descripcion_libro" required></textarea>
+
+                <label for="edit-serie">Serie:</label>
+                <input type="text" id="edit-serie" name="serie" placeholder="Trono de Cristal" maxlength="40">
+
+                <label for="edit-numero">Número:</label>
+                <input type="number" id="edit-numero" name="numero" min="1">
+
+                <label for="edit-codigo_autor">Código del Autor:</label>
+                <select id="edit-codigo_autor" name="codigo_autor" required>
+                    <option value="0">Seleccionar autor</option>
+                    <?php
+                    $authors = getAuthors();
+                    if (is_array($authors)) {
+                        foreach ($authors as $author) {
+                            echo "<option value='" . $author['codigo_autor'] . "'>" . $author['nombre'] . "</option>";
+                        }
+                    } else {
+                        echo "<option value='0'>Sin autores</option>";
+                    }
+                    ?>
+                </select>
+
+                <div class="editBookModal-actions">
+                    <button type="button" onclick="guardarLibro()">Guardar Cambios</button>
+                    <button type=" button" class="editBookModal-cancel">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para agregar productos nuevos -->
+    <div id="updateBookModal-container" class="updateBookModal-modal">
+        <div class="updateBookModal-content">
+            <span class="updateBookModal-close">&times;</span>
+            <h2 class="updateBookModal-title">Editar Libro</h2>
+
+            <form id="updateBookForm">
+                <label for="update-titulo">Título:</label>
+                <input type="text" id="update-titulo" name="titulo" required maxlength="40">
+
+                <label for="update-genero">Género:</label>
+                <input type="text" id="update-genero" name="genero" required maxlength="40">
+
+                <label for="update-editorial">Editorial:</label>
+                <input type="text" id="update-editorial" name="editorial" required maxlength="30">
+
+                <label for="update-n_pag">Nº de Páginas:</label>
+                <input type="number" id="update-n_pag" name="n_pag" required min="1">
+
+                <label for="update-idioma">Idioma:</label>
+                <select id="update-idioma" name="idioma" required>
+                    <option value="Español">Español</option>
+                    <option value="Inglés">Inglés</option>
+                </select>
+
+                <label for="update-fecha_publ">Fecha de Publicación:</label>
+                <input type="date" id="update-fecha_publ" name="fecha_publ" required>
+
+                <label for="update-encuadernacion">Encuadernación:</label>
+                <select id="update-encuadernacion" name="encuadernacion" required>
+                    <option value="Tapa blanda">Tapa blanda</option>
+                    <option value="Tapa dura">Tapa dura</option>
+                </select>
+
+                <label for="update-precio">Precio (€):</label>
+                <input type="number" id="update-precio" name="precio" required step="0.01" min="0">
+
+                <label for="update-descripcion_libro">Descripción:</label>
+                <textarea id="update-descripcion_libro" name="descripcion_libro" required></textarea>
+
+                <label for="update-serie">Serie:</label>
+                <input type="text" id="update-serie" name="serie" placeholder="Trono de Cristal" maxlength="40">
+
+                <label for="update-numero">Número:</label>
+                <input type="number" id="update-numero" name="numero" min="1">
+
+                <label for="update-codigo_autor">Código del Autor:</label>
+                <select id="update-codigo_autor" name="codigo_autor" required>
+                    <option value="0">Seleccionar autor</option>
+                    <?php
+                    $authors = getAuthors();
+                    if (is_array($authors)) {
+                        foreach ($authors as $author) {
+                            echo "<option value='" . $author['codigo_autor'] . "'>" . $author['nombre'] . "</option>";
+                        }
+                    } else {
+                        echo "<option value='0'>Sin autores</option>";
+                    }
+                    ?>
+                </select>
+
+                <div class="updateBookModal-actions">
+                    <button type="button" onclick="insertarLibro()">Guardar Cambios</button>
+                    <button type="button" class="updateBookModal-cancel">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <footer class="footer-admin">
         <div class="footer-content">
             <p>&copy; <?php echo (date("Y")) ?> Bookstore. Todos los derechos reservados.</p>

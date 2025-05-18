@@ -122,3 +122,18 @@ function checkUserPerms($user_id)
 
     return $row['administrador'] == 1;
 }
+
+
+function getAuthors()
+{
+    global $conn;
+    $stmt = $conn->prepare('SELECT * FROM autor ORDER BY codigo_autor ASC');
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $rows = [];
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    return $rows;
+}

@@ -84,6 +84,13 @@ td {
 
 .actions {
     display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.actions svg {
+    margin: unset;
+    padding: unset;
 }
 
 .table-container table thead tr th {

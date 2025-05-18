@@ -53,47 +53,47 @@ if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
             <div id="formulariocontainer">
                 <div>
                     <label>Nombre</label>
-                    <input type="text" name="order_name" placeholder=" Nombre" value="Pedro">
+                    <input type="text" name="order_name" placeholder=" Nombre">
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Apellidos</label>
-                    <input type="text" name="order_surname" placeholder=" Apellidos" value="García">
+                    <input type="text" name="order_surname" placeholder=" Apellidos">
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Correo electrónico</label>
-                    <input type="text" name="order_email" placeholder=" Correo electrónico" value="wdcwc@gmail.com">
+                    <input type="text" name="order_email" placeholder=" Correo electrónico">
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Teléfono</label>
-                    <input type="text" name="order_phone" placeholder=" Teléfono" value="2323232323">
+                    <input type="text" name="order_phone" placeholder=" Teléfono">
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Dirección</label>
-                    <input type="text" name="order_direction" placeholder=" Dirección" value="wdcwdwdc" />
+                    <input type="text" name="order_direction" placeholder=" Dirección" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Datos adicionales</label>
-                    <input type="text" name="order_direction_adicional" placeholder=" Datos adicionales (piso,puerta,barrio...)" value="wdcwcwcwc" />
+                    <input type="text" name="order_direction_adicional" placeholder=" Datos adicionales (piso,puerta,barrio...)" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Código postal</label>
-                    <input type="text" name="order_postal_code" placeholder=" Código postal" value="2323223" />
+                    <input type="text" name="order_postal_code" placeholder=" Código postal" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Población</label>
-                    <input type="text" name="order_town" placeholder=" Población" value="wdcwdccwdc" />
+                    <input type="text" name="order_town" placeholder=" Población" />
                     <p class="pError"></p>
                 </div>
                 <div>
                     <label>Provincia</label>
-                    <input type="text" name="order_city" placeholder=" Provincia" value="dwdcwcd" />
+                    <input type="text" name="order_city" placeholder=" Provincia" />
                     <p class="pError"></p>
                 </div>
             </div>

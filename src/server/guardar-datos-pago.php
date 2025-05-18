@@ -18,10 +18,10 @@ if (isset($_POST["actualizarDatosPago"]) && isset($_SESSION['logged_in'])) {
         'order_surname' => $order_surname,
         'order_email' => $order_email,
         'order_phone' => $order_phone,
-        'order_address' => $order_direction, // Cambiar clave a "order_address"
-        'order_address_adicional' => $order_direction_adicional, // Cambiar clave a "order_address_adicional"
-        'order_postalcode' => $order_postal_code, // Cambiar clave a "order_postalcode"
-        'order_city' => $order_town, // Cambiar clave a "order_city"
-        'order_province' => $order_city, // Cambiar clave a "order_province"
+        'order_address' => $order_direction,
+        'order_address_adicional' => $order_direction_adicional,
+        'order_postalcode' => $order_postal_code,
+        'order_city' => $order_town,
+        'order_province' => $order_city,
     );
 }

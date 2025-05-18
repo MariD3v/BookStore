@@ -1,14 +1,5 @@
 <?php
-include("../server/formCarrito.php");
-include("../server/metodos-pago.php");
-include("../server/guardar-datos-pago.php");
-
-
-if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
-    header('location: ../index.php'); //Si el carro esta vacio, nos devuelve a index.php
-    exit();
-}
-
+// include("../server/formCarrito.php");
 
 ?>
 <!DOCTYPE html>
@@ -19,11 +10,6 @@ if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore</title>
     <link rel="stylesheet" href="../styles/style.css" type="text/css" />
-    <link rel="stylesheet" href="../styles/resumen-pedidos.css" type="text/css" />
-    <script
-        src="https://www.paypal.com/sdk/js?client-id=ARnrqAjjIJCC1jhi9mGZ-pGxSlOQ8VQDhMnFIpdMo0n-Pziw7iGpLMKka7OaODPP8-36IeDl6WndGN2R&currency=EUR&components=buttons&enable-funding=venmo,paylater,card"
-        data-sdk-integration-source="developer-studio">
-    </script>
 
 </head>
 
@@ -50,79 +36,18 @@ if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
                 </form>
             </div>
         </nav>
-        <div id="resumen-pedido-container">
-            <h2>Resumen del Pedido</h2>
-            <div class="contenido-resumen">
-                <section class="datos-pago">
-                    <h3>Datos de Facturación</h3>
-                    <?php
-                    if (isset($_SESSION['datos_pago']) && isset($_SESSION['logged_in'])) {
-                        $datos = $_SESSION['datos_pago'];
-
-                        $campos = [
-                            'Nombre'             => $datos['order_name'] ?? '',
-                            'Apellidos'          => $datos['order_surname'] ?? '',
-                            'Correo electrónico' => $datos['order_email'] ?? '',
-                            'Teléfono'           => $datos['order_phone'] ?? '',
-                            'Dirección'          => $datos['order_address'] ?? '',
-                            'Datos adicionales'  => $datos['order_address_adicional'] ?? '',
-                            'Código postal'      => $datos['order_postalcode'] ?? '',
-                            'Población'          => $datos['order_city'] ?? '',
-                            'Provincia'          => $datos['order_province'] ?? '',
-                        ];
-
-                        foreach ($campos as $label => $valor) {
-                            if ($valor !== '') {
-                                echo "<p><strong>{$label}:</strong> " . htmlspecialchars($valor) . "</p>";
-                            }
-                        }
-                    } else {
-                        echo "<p>No hay datos de facturación disponibles.</p>";
-                    }
-                    ?>
-                </section>
-
-                <section class="resumen-compra">
-                    <h3>Detalle de la Compra</h3>
-                    <?php foreach ($_SESSION['cart'] as $libro) : ?>
-                        <div class="item-compra">
-                            <p>
-                                <strong><?= intval($libro['product_quantity']) ?>x</strong> <?= htmlspecialchars($libro['product_name']) ?><br>
-                                <em><?= htmlspecialchars($libro['product_author']) ?></em><br>
-                                <span><?= number_format($libro['product_price'] * $libro['product_quantity'], 2, ',', '.') ?> €</span>
-                            </p>
-                        </div>
-                    <?php endforeach; ?>
-                </section>
-            </div>
-
-            <div class="precio-total">
-                <div class="pay">
-                    <div id="buttoncontainer">
-                        <input type="submit" id="doCompraBton" value="Abrir pasarela de pago" />
-                        <div id="paypal-button-container"></div>
-                    </div>
-
-                    <form method="POST" name="formulario" id="formularioCompra">
-                        <input type="hidden" name="docompraformulariodefinitiva" value="1">
-
-                    </form>
-                </div>
-                <div class="precio-total-title">
-                    <h3>Precio Total</h3>
-                    <p><strong><?= number_format($_SESSION['total'], 2, ',', '.') ?> €</strong></p>
-                </div>
-            </div>
+        <div class="comprarealizadacontainer">
+            <p>Su pago ha sido <b>cancelado</b>.</p>
+            <p>Vuelve al carrito para <b>realizar la compra</b>.</p>
         </div>
-
-
-
+        <div class="volveriniciobutton">
+            <a href="../index.php">Volver a la página de inicio</a>
+        </div>
     </main>
-
     <footer>
         <p>Página web realizada por Maria Salar Garcia</p>
         <div class="links">
-            <a href="https://github.com/LittleMari" target="_blank" rel="noreferrer">
+            <a href="https://github.com/MariD3v" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">
                     <path fill-rule="evenodd"
                         d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
@@ -143,22 +68,7 @@ if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
                 </svg>
             </a>
         </div>
-        <script src="../scripts/Payway.js" defer></script>
     </footer>
-    <script>
-        document.getElementById("doCompraBton").addEventListener("click", function() {
-            var total = <?php echo $_SESSION['total'] ?>;
-            var paymentMethod = <?= json_encode($_SESSION['payment_method']) ?>;
-
-            document.getElementById("doCompraBton").style.display = "none";
-
-            if (paymentMethod === 'paypal') {
-                checkPayPal(total, <?php echo json_encode($_SESSION['datos_pago']) ?>);
-            } else {
-                alert("Método de pago no soportado. Por favor, elige PayPal.");
-            }
-        });
-    </script>
 </body>
 
 </html>

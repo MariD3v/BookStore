@@ -520,8 +520,11 @@ td svg:hover {
     }
 
     .dropdown-menu {
-
         right: 10px;
+    }
+
+    .search-options .btn-product {
+        display: none;
     }
 }
 
@@ -607,4 +610,319 @@ td svg:hover {
     text-align: right;
     margin-top: 20px;
     font-size: 16px;
+}
+
+.editBookModal-modal {
+    display: block;
+    position: fixed;
+    z-index: 5000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 30px 10px;
+    box-sizing: border-box;
+}
+
+.editBookModal-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.editBookModal-modal.close {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.editBookModal-content {
+    background-color: var(--base-clr);
+    margin: auto;
+    padding: 25px 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+}
+
+.editBookModal-modal.show .editBookModal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.editBookModal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--text-clr);
+    cursor: pointer;
+}
+
+.editBookModal-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text-clr);
+}
+
+#editBookForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#editBookForm label {
+    font-weight: 600;
+    color: var(--text-clr);
+}
+
+#editBookForm input,
+#editBookForm select,
+#editBookForm textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+#editBookForm input:focus,
+#editBookForm select:focus,
+#editBookForm textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.editBookModal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.editBookModal-actions button {
+    padding: 10px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.editBookModal-actions button:first-child {
+    background-color: #28a745;
+    color: white;
+}
+
+.editBookModal-actions button:first-child:hover {
+    background-color: #218838;
+}
+
+.editBookModal-actions .editBookModal-cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.editBookModal-actions .editBookModal-cancel:hover {
+    background-color: #c82333;
+}
+
+.search-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-product {
+    appearance: none;
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.btn-product:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+}
+
+.btn-product:hover {
+    background-color: #2c974b;
+}
+
+.btn-product:focus {
+    box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+    outline: none;
+}
+
+.btn-product:disabled {
+    background-color: #94d3a2;
+    border-color: rgba(27, 31, 35, .1);
+    color: rgba(255, 255, 255, .8);
+    cursor: default;
+}
+
+.btn-product:active {
+    background-color: #298e46;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.updateBookModal-modal {
+    display: block;
+    position: fixed;
+    z-index: 5000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 30px 10px;
+    box-sizing: border-box;
+}
+
+.updateBookModal-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.updateBookModal-modal.close {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.updateBookModal-content {
+    background-color: var(--base-clr);
+    margin: auto;
+    padding: 25px 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.updateBookModal-modal.show .updateBookModal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.updateBookModal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--text-clr);
+    cursor: pointer;
+}
+
+.updateBookModal-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text-clr);
+}
+
+#updateBookForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#updateBookForm label {
+    font-weight: 600;
+    color: var(--text-clr);
+}
+
+#updateBookForm input,
+#updateBookForm select,
+#updateBookForm textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+#updateBookForm input:focus,
+#updateBookForm select:focus,
+#updateBookForm textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.updateBookModal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.updateBookModal-actions button {
+    padding: 10px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.updateBookModal-actions button:first-child {
+    background-color: #28a745;
+    color: white;
+}
+
+.updateBookModal-actions button:first-child:hover {
+    background-color: #218838;
+}
+
+.updateBookModal-actions .updateBookModal-cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.updateBookModal-actions .updateBookModal-cancel:hover {
+    background-color: #c82333;
 }

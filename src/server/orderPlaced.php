@@ -19,7 +19,7 @@ if (isset($_POST['docompraformulariodefinitiva']) && isset($_SESSION['logged_in'
     $order_total = $_SESSION['total'];
 
     $stmt = $conn->prepare("INSERT INTO compra (estado, fecha, nombre, apellidos, telefono, direccion, direccion_adicional, codigo_postal, poblacion, provincia, codigo_cliente, total) VALUES ('Pagado', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
-    $stmt->bind_param('sssississii', $order_date, $order_name, $order_surname, $order_phone, $order_direction, $order_direction_adicional, $order_postal_code, $order_town, $order_city, $client_id, $order_total);
+    $stmt->bind_param('sssississid', $order_date, $order_name, $order_surname, $order_phone, $order_direction, $order_direction_adicional, $order_postal_code, $order_town, $order_city, $client_id, $order_total);
     $stmt->execute();
 
     $order_id = $stmt->insert_id;
