@@ -4,10 +4,12 @@ include("../server/checkProduct.php");
 
 function checkProductosInactivos()
 {
-    foreach ($_SESSION['cart'] as $key => $product) {
-        if (!checkStatus($product['product_id'])) {
-            unset($_SESSION['cart'][$key]);
-            calculateTotal();
+    if (isset($_SESSION['cart'])) {
+        foreach ($_SESSION['cart'] as $key => $product) {
+            if (!checkStatus($product['product_id'])) {
+                unset($_SESSION['cart'][$key]);
+                calculateTotal();
+            }
         }
     }
 }
