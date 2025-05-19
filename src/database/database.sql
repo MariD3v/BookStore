@@ -194,16 +194,4 @@ INSERT INTO cliente VALUES
 (24, 'Isabel', 'Ramos Nieto', 'isabelramos@correo.net', 'a87ff679a2f3e71d9181a67b7542122c', 0),
 (25, 'Hugo', 'Méndez Barrios', 'hmendez@ejemplo.com', '0cc175b9c0f1b6a831c399e269772661', 1);
 
-
-
-INSERT INTO compra VALUES (1, 'Pendiente de pago', '2024-11-15 20:34:12','Mari', 'Salar Garcia', 654790769, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1, 23.12);
-INSERT INTO compra VALUES (2, 'Entregado', '2024-08-30 14:23:45','Mari', 'Salar Garcia', 654797969, 'C/ Jose Luis 5', 'Piso 1A', 30629, 'Murcia', 'Murcia', 1, 45.99);
-
-INSERT INTO detalle_compra VALUES (1, 43, 3);
-INSERT INTO detalle_compra VALUES (1, 3, 1);
-INSERT INTO detalle_compra VALUES (1, 21, 2);
-INSERT INTO detalle_compra VALUES (2, 10, 1);
-INSERT INTO detalle_compra VALUES (2, 24, 2);
-INSERT INTO detalle_compra VALUES (2, 21, 1);
-
 INSERT INTO visitas (id, visitas) VALUES (0, 0);
