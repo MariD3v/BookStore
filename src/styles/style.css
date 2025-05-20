@@ -2,13 +2,13 @@
     --sbg-color: #141414;
     --bg-color: #333;
     --bgl-color: rgb(77, 77, 77);
-    --lighter-color: #eee9ed;
-    --ll-color: rgb(248, 236, 240);
-    --l-color: #e9d7e1;
-    --lm-color: #d1a7b6;
-    --m-color: #c195a5;
-    --md-color: #a3788c;
-    --d-color: #8f5e72;
+--lighter-color: #fff1e8;   /* Naranja muy claro, casi crema */
+--ll-color: #ffdfd6;        /* Naranja pastel claro */
+--l-color: #ffc5b2;         /* Melocotón suave */
+--lm-color: #ff9e5e;        /* Naranja medio-claro */
+--m-color: #f28847;         /* Color base: naranja medio */
+--md-color: #ec6d1e;        /* Naranja oscuro */
+--d-color: #dc590e;
 }
 
 body {
