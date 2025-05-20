@@ -34,6 +34,8 @@ if ($valueSearchBar != '') {
     $sql .= " AND (titulo LIKE ? OR autor.nombre LIKE ? OR genero LIKE ? OR serie LIKE ? OR encuadernacion LIKE ? OR idioma LIKE ?)";
 }
 
+$sql .= " AND libro.activado = 1";
+
 if ($selectedOrder == 'Precio ⭡') {
     $sql .= " ORDER BY precio ASC";
 } else if ($selectedOrder == 'Precio ⭣') {
@@ -43,9 +45,6 @@ if ($selectedOrder == 'Precio ⭡') {
 } else if ($selectedOrder == 'Z-A') {
     $sql .= " ORDER BY titulo DESC";
 }
-
-$sql .= " AND libro.activado = 1";
-
 
 $params = [];
 $types = "";
