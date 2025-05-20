@@ -403,9 +403,29 @@ function insertarLibro() {
 
     const formData = new FormData(form);
 
-    console.log('Datos del formulario:');
-    for (const [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
+    // Validar campos obligatorios
+    const camposObligatorios = [
+        'titulo',
+        'genero',
+        'editorial',
+        'n_pag',
+        'idioma',
+        'fecha_publ',
+        'encuadernacion',
+        'precio',
+        'descripcion_libro',
+        'serie',
+        'numero',
+        'codigo_autor',
+        'activado',
+    ];
+
+    for (const campo of camposObligatorios) {
+        const valor = formData.get(campo);
+        if (!valor || valor.trim() === '') {
+            alert(`Por favor, completa el campo: ${campo}`);
+            return;
+        }
     }
 
     let precio = formData.get('precio');
@@ -424,7 +444,6 @@ function insertarLibro() {
                 alert('Libro insertado correctamente.');
                 modal.classList.remove('show');
                 modal.classList.add('close');
-
                 location.reload();
             } else {
                 alert('Error al insertar: ' + result.message);
@@ -435,3 +454,4 @@ function insertarLibro() {
             alert('Error en la comunicación con el servidor.');
         });
 }
+

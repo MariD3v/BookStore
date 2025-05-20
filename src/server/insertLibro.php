@@ -8,13 +8,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $n_pag              = $_POST['n_pag'] ?? 0;
     $idioma             = $_POST['idioma'] ?? '';
     $fecha_publ         = $_POST['fecha_publ'] ?? '';
-    $encuadernacion     = $_POST['encuadernacion'] ?? '';
+    $encuadernacion     = $_POST['encuadernacion'] ?? 'Tapa dura';
     $precio             = $_POST['precio'] ?? 0.00;
     $descripcion_libro  = $_POST['descripcion_libro'] ?? '';
     $serie              = $_POST['serie'] ?? null;
     $numero             = $_POST['numero'] ?? null;
     $codigo_autor       = $_POST['codigo_autor'];
     $activado           = intval($_POST['activado'] ?? 1);
+
+    $tipos_encuadernacion = ['Tapa dura', 'Tapa blanda'];
+    if (!in_array($encuadernacion, $tipos_encuadernacion)) {
+        echo json_encode(['success' => false, 'message' => 'Tipo de encuadernación no válido.']);
+        exit;
+    }
 
     try {
         $sql = "INSERT INTO libro (
@@ -25,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param(
-            "sssissdsssiii",
+            "sssissssssiii",
             $titulo,
             $genero,
             $editorial,

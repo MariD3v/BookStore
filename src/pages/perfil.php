@@ -82,6 +82,11 @@ include_once("../server/adminpanel.php");
                         while ($compra = $compra_consulta->fetch_assoc()) { ?>
                             <div class="pedido">
                                 <img src="../assets/images/covers/<?php echo $compra["primer_producto"] ?>.png" class="portadaPedido">
+                                <?php if (file_exists("../assets/images/covers/" . $compra["primer_producto"] . ".png")) {
+                                    echo '<img class="portadaPedido" src="../assets/images/covers/' . $compra["primer_producto"] . '.png">';
+                                } else {
+                                    echo '<img class="portadaPedido" src="../assets/images/covers/sin_portada.png">';
+                                } ?>
                                 <h2 class="idPedido">ID compra: <?php echo $compra["codigo_compra"] ?></h2>
                                 <h2 class="totalPedido">Total: <?php echo $compra['total_compra'] ?>€</h2>
                                 <h2 class="fechaPedido">Fecha: <?php echo $compra["fecha"] ?></h2>
@@ -94,7 +99,7 @@ include_once("../server/adminpanel.php");
             </div>
         </section>
     </main>
-<footer>
+    <footer>
         <div class="links">
             <a href="https://github.com/IAmRiven" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">

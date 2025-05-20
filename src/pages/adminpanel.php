@@ -186,7 +186,7 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='6'>No hay productos disponibles.</td></tr>";
+                                    echo "<tr><td colspan='12'>No hay productos disponibles.</td></tr>";
                                 }
                                 ?>
                             </tbody>

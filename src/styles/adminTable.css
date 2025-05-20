@@ -176,6 +176,8 @@ td {
         align-items: center;
         margin: 0 auto;
         width: 100%;
+        height: 100%;
+        margin-bottom: 8%;
     }
 
     .table-container table thead tr th {
@@ -187,5 +189,10 @@ td {
     .search-bar h1 {
         text-align: left;
         margin-bottom: 25px;
+        margin-top: 10px;
+    }
+
+    [data-label="Activado"] {
+        text-align: unset;
     }
 }

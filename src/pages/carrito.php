@@ -60,26 +60,40 @@ checkProductosInactivos();
                 } else if (count($_SESSION['cart']) == 0) {
                     echo "<div style=\"text-align:center; margin:10%\"><h1 style=\"color:white; font-size:30px\">Tu cesta está vacía</h1><p style=\"color:white\">Explora multitud de libros a buen precio desde nuestra página principal</p></div>";
                 } else {
-                    foreach ($_SESSION['cart'] as $key => $value) { ?>
+                    foreach ($_SESSION['cart'] as $key => $value) {
+                        $codigo_libro = $value['product_id'];
+                        $ruta_imagen = "../assets/images/covers/" . $codigo_libro . ".png";
+                        $imagen = file_exists($ruta_imagen) ? $ruta_imagen : "../assets/images/covers/sin_portada.png";
+                ?>
                         <div class="articulocarrito">
-                            <a href=<?php echo "libro.php?codigo_libro=" . $value['product_id']; ?>><img class="portada" src="../assets/images/covers/<?php echo $key ?>.png"></a>
+                            <a href="<?php echo "libro.php?codigo_libro=" . $codigo_libro; ?>">
+                                <img class="portada" src="<?php echo $imagen; ?>">
+                            </a>
                             <p class="tituloCarro"><?php echo $value['product_name'] ?></p>
                             <p class="autorCarro"><?php echo $value['product_author'] ?></p>
                             <form method="POST" action="carrito.php">
                                 <div class="buttonunidadescont">
-                                    <input type="hidden" name="product_id" value=<?php echo $value['product_id'] ?>>
-                                    <input type="hidden" name="product_quantity" value=<?php echo $value['product_quantity'] ?>>
+                                    <input type="hidden" name="product_id" value="<?php echo $codigo_libro ?>">
+                                    <input type="hidden" name="product_quantity" value="<?php echo $value['product_quantity'] ?>">
                                     <button class="buttonunidades" name="more_product">+</button>
                                     <p class="unidadesCarro"><?php echo $value['product_quantity'] ?></p>
                                     <button class="buttonunidades" name="less_product">-</button>
                                     <button class="buttonunidades" name="remove_product">
                                         <svg x="0px" y="0px" width="28" height="28" viewBox="0,0,256,256">
                                             <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
-                                            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="none" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
-                                            <g transform="scale(5.33333,5.33333)"><path d="M41.5,13h-9c0,-2.5 -9,-2.5 -9,0h-9c-0.8,0 -1.5,0.7 -1.5,1.5c0,0.8 0.7,1.5 1.5,1.5h1v26.5c0,2.2 1.8,4 4,4h17c2.2,0 4,-1.8 4,-4v-26.5h1c0.8,0 1.5,-0.7 1.5,-1.5c0,-0.8 -0.7,-1.5 -1.5,-1.5z" fill="#ffe9c3" stroke="none" stroke-width="1" stroke-linecap="butt"></path><path d="M19.5,11.5v-1.5c0,-2.5 2,-4.5 4.5,-4.5c2.5,0 4.5,2 4.5,4.5v1.5" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="butt"></path><path d="M8.5,11.5h31" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path><path d="M36.5,23.5v-12" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path><path d="M11.5,18.7v19.8c0,2.2 1.8,4 4,4h17c2.2,0 4,-1.8 4,-4v-7.5" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path><path d="M20.5,19.5v15" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path><path d="M27.5,19.5v15" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path></g>
-                                            </g>
+                                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="none" stroke-linecap="none" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                    <g transform="scale(5.33333,5.33333)">
+                                                        <path d="M41.5,13h-9c0,-2.5 -9,-2.5 -9,0h-9c-0.8,0 -1.5,0.7 -1.5,1.5c0,0.8 0.7,1.5 1.5,1.5h1v26.5c0,2.2 1.8,4 4,4h17c2.2,0 4,-1.8 4,-4v-26.5h1c0.8,0 1.5,-0.7 1.5,-1.5c0,-0.8 -0.7,-1.5 -1.5,-1.5z" fill="#ffe9c3" stroke="none" stroke-width="1" stroke-linecap="butt"></path>
+                                                        <path d="M19.5,11.5v-1.5c0,-2.5 2,-4.5 4.5,-4.5c2.5,0 4.5,2 4.5,4.5v1.5" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="butt"></path>
+                                                        <path d="M8.5,11.5h31" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path>
+                                                        <path d="M36.5,23.5v-12" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path>
+                                                        <path d="M11.5,18.7v19.8c0,2.2 1.8,4 4,4h17c2.2,0 4,-1.8 4,-4v-7.5" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path>
+                                                        <path d="M20.5,19.5v15" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path>
+                                                        <path d="M27.5,19.5v15" fill="none" stroke="#18193f" stroke-width="3" stroke-linecap="round"></path>
+                                                    </g>
+                                                </g>
                                         </svg>
-                                   </button>
+                                    </button>
                                 </div>
                             </form>
                             <p class="precioCarro"><?php echo $value['product_price'] * $value['product_quantity'] . '€' ?></p>

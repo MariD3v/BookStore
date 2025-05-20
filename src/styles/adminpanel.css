@@ -378,12 +378,20 @@ td svg:hover {
     transition: fill 0.3s ease;
 }
 
+input[type="file"] {
+    color: var(--text-clr);
+}
+
 @media (max-width: 1646px) {
 
     main {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto 1fr auto;
         grid-template-areas: "topbar" "sidebar" "main" "footer";
+    }
+
+    .orders {
+        margin-top: 10px;
     }
 
     #sidebar {

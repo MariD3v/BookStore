@@ -4,12 +4,14 @@ include("../server/order.php");
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookstore</title>
     <link rel="stylesheet" href="../styles/style.css" type="text/css" />
 </head>
+
 <body>
     <main>
         <nav>
@@ -37,8 +39,8 @@ include("../server/order.php");
 
             <div id="producto-container">
                 <div style="display: flex; flex-direction: row; justify-content: space-between; color:var(--bg-color);">
-                    <h3 class="h3Pedido" style="margin:0 0 10px 0;">Pedido <?php echo $codigo_compra;?></h3>
-                    <h4 class="h4Pedido" style="margin:0 0 10px 0;">Fecha de compra: <?php echo htmlspecialchars($fecha_compra);?></h4>
+                    <h3 class="h3Pedido" style="margin:0 0 10px 0;">Pedido <?php echo $codigo_compra; ?></h3>
+                    <h4 class="h4Pedido" style="margin:0 0 10px 0;">Fecha de compra: <?php echo htmlspecialchars($fecha_compra); ?></h4>
                 </div>
                 <table class="tablaProducto" border="0">
                     <tr>
@@ -50,23 +52,30 @@ include("../server/order.php");
                         <th style="padding:0 5px">U</th>
                         <th>Importe total</th>
                     </tr>
-                    <?php if ($pedido_detalles->num_rows != 0) { while ($detalle = $pedido_detalles->fetch_assoc()) { ?>
-                    <tr>
-                        <td class="detalleProducto"><?php echo $detalle["codigo_libro"] ?></td>
-                        <td><a href=<?php echo "libro.php?codigo_libro=".$detalle["codigo_libro"];?>><img src="../assets/images/covers/<?php echo $detalle["codigo_libro"] ?>.png" class="portadaProducto"></a></td>
-                        <td class="detalleProducto"><?php echo $detalle["titulo"] ?></td>
-                        <td class="detalleProducto"><?php echo $detalle["nombre"] ?></td>
-                        <td class="detalleProducto"><?php echo $detalle["precio"] ?>€</td>
-                        <td class="detalleProducto"><?php echo $detalle["unidades"] ?></td>
-                        <td class="detalleProducto"><?php echo $detalle["precio"] * $detalle["unidades"] ?>€</td>
-                    </tr>
-                    <?php }} ?>
+                    <?php if ($pedido_detalles->num_rows != 0) {
+                        while ($detalle = $pedido_detalles->fetch_assoc()) { ?>
+                            <tr>
+                                <td class="detalleProducto"><?php echo $detalle["codigo_libro"] ?></td>
+                                <td><a href=<?php echo "libro.php?codigo_libro=" . $detalle["codigo_libro"]; ?>>
+                                        <?php if (file_exists("../assets/images/covers/" . $detalle["codigo_libro"] . ".png")) {
+                                            echo '<img class="portadaProducto" src="../assets/images/covers/' . $detalle["codigo_libro"] . '.png">';
+                                        } else {
+                                            echo '<img class="portadaProducto" src="../assets/images/covers/sin_portada.png">';
+                                        } ?></a></td>
+                                <td class="detalleProducto"><?php echo $detalle["titulo"] ?></td>
+                                <td class="detalleProducto"><?php echo $detalle["nombre"] ?></td>
+                                <td class="detalleProducto"><?php echo $detalle["precio"] ?>€</td>
+                                <td class="detalleProducto"><?php echo $detalle["unidades"] ?></td>
+                                <td class="detalleProducto"><?php echo $detalle["precio"] * $detalle["unidades"] ?>€</td>
+                            </tr>
+                    <?php }
+                    } ?>
                 </table>
-                <h2 class="h2Pedido" style="text-align:end;margin:20px 10px;color:var(--bg-color);">Total: <?php echo $_GET["total"];?>€</h2>
+                <h2 class="h2Pedido" style="text-align:end;margin:20px 10px;color:var(--bg-color);">Total: <?php echo $_GET["total"]; ?>€</h2>
             </div>
         </section>
     </main>
-<footer>
+    <footer>
         <div class="links">
             <a href="https://github.com/IAmRiven" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">
@@ -104,4 +113,5 @@ include("../server/order.php");
         </div>
     </footer>
 </body>
+
 </html>

@@ -162,7 +162,7 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                                             echo "Sin autores";
                                         }
                                         echo "</td>";
-                                        echo "<td style='text-align: center;'";
+                                        echo "<td data-label='Activado' style='text-align: center;'>";
                                         if ($products['activado'] == 1) {
                                             echo "<p>Sí</p>";
                                         } else {
@@ -180,7 +180,7 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                                         echo "</td>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='6'>No hay productos disponibles.</td></tr>";
+                                    echo "<tr><td colspan='12'>No hay productos disponibles.</td></tr>";
                                 }
                                 ?>
                             </tbody>

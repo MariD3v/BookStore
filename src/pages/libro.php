@@ -36,10 +36,14 @@ include("../server/getProductsLibro.php");
                 </form>
             </div>
         </nav>
-        <?php if(isset($libro["codigo_libro"])){?>
+        <?php if (isset($libro["codigo_libro"])) { ?>
             <div class="book-author-container">
                 <div class="firstline">
-                    <img class="imagen-book" src="../assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png" />
+                    <?php if (file_exists("../assets/images/covers/" . $libro["codigo_libro"] . ".png")) {
+                        echo '<img class="imagen-book" src="../assets/images/covers/' . $libro["codigo_libro"] . '.png">';
+                    } else {
+                        echo '<img class="imagen-book" src="../assets/images/covers/sin_portada.png">';
+                    } ?>
                     <div class="atributos-book-author">
                         <h1 id="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></h1>
                         <a id="autor" href="autor.php?codigo_autor=<?php echo $autor['codigo_autor']; ?>"><?php echo mb_strtoupper($autor["nombre"]) ?></a>
@@ -52,11 +56,11 @@ include("../server/getProductsLibro.php");
                     </div>
                 </div>
                 <form method="POST" action="carrito.php">
-                    <input type="hidden" name="product_id" value="<?php echo $libro["codigo_libro"] ?>"/>
-                    <input type="hidden" name="product_name" value="<?php echo mb_strtoupper($libro["titulo"]) ?>"/>
-                    <input type="hidden" name="product_price" value="<?php echo ($libro["precio"]) ?>"/>
-                    <input type="hidden" name="product_author" value="<?php echo mb_strtoupper($autor["nombre"]) ?>"/>
-                    <input type="hidden" name="product_quantity" value="1"/>
+                    <input type="hidden" name="product_id" value="<?php echo $libro["codigo_libro"] ?>" />
+                    <input type="hidden" name="product_name" value="<?php echo mb_strtoupper($libro["titulo"]) ?>" />
+                    <input type="hidden" name="product_price" value="<?php echo ($libro["precio"]) ?>" />
+                    <input type="hidden" name="product_author" value="<?php echo mb_strtoupper($autor["nombre"]) ?>" />
+                    <input type="hidden" name="product_quantity" value="1" />
                     <button class="añadircestabutton" type="submit" name="add_product">Añadir a la cesta</button>
                 </form>
                 <fieldset class="fichatecnica">
@@ -90,7 +94,11 @@ include("../server/getProductsLibro.php");
                         <div class="carruselcatalogo catalogo">
                             <?php while ($libro = $librosGenero_consulta->fetch_assoc()) { ?>
                                 <a class="book" href=<?php echo "libro.php?codigo_libro=" . $libro["codigo_libro"]; ?>>
-                                    <img class="portada" src="../assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png">
+                                    <?php if (file_exists("../assets/images/covers/" . $libro["codigo_libro"] . ".png")) {
+                                        echo '<img class="portada" src="../assets/images/covers/' . $libro["codigo_libro"] . '.png">';
+                                    } else {
+                                        echo '<img class="portada" src="../assets/images/covers/sin_portada.png">';
+                                    } ?>
                                     <p class="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></p>
                                     <button class="buttoncarro"><img src="../assets/images/buttoncarro.png" alt="añadir a la cesta" height="35px"></button>
                                     <p class="precio"><?php echo $libro["precio"] ?></p>
@@ -110,7 +118,11 @@ include("../server/getProductsLibro.php");
                         <div class="catalogo">
                             <?php while ($libro = $librosAutor_consulta->fetch_assoc()) { ?>
                                 <a class="book" href=<?php echo "libro.php?codigo_libro=" . $libro["codigo_libro"]; ?>>
-                                    <img class="portada" src="../assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png">
+                                    <?php if (file_exists("../assets/images/covers/" . $libro["codigo_libro"] . ".png")) {
+                                        echo '<img class="portada" src="../assets/images/covers/' . $libro["codigo_libro"] . '.png">';
+                                    } else {
+                                        echo '<img class="portada" src="../assets/images/covers/sin_portada.png">';
+                                    } ?>
                                     <p class="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></p>
                                     <button class="buttoncarro"><img src="../assets/images/buttoncarro.png" alt="añadir a la cesta" height="35px"></button>
                                     <p class="precio"><?php echo $libro["precio"] ?></p>
@@ -120,12 +132,12 @@ include("../server/getProductsLibro.php");
                         <button class="carruselprev carruselbton-btn">▶</button>
                     </div>
                 </div>
-            <?php } 
+        <?php }
         } else {
             echo "<div style=\"text-align:center; margin:10%\"><h1 style=\"color:white; font-size:30px\">Producto no disponible</h1><p style=\"color:white\">Explora multitud de libros desde nuestra página principal</p></div>";
-        }?>
+        } ?>
     </main>
-   <footer>
+    <footer>
         <div class="links">
             <a href="https://github.com/IAmRiven" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">

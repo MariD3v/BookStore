@@ -132,7 +132,7 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                             </thead>
                             <tbody>
                                 <?php
-                                if (!empty(getUsersForTable())) {
+                                if (count(getUsersForTable()) > 1) {
                                     foreach (getUsersForTable() as $users) {
                                         if ($users['nombre'] == $_SESSION['user_name'] && $users['apellidos'] == $_SESSION['user_surname'] && $users['email'] == $_SESSION['user_email']) {
                                             continue;
@@ -155,6 +155,10 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                                             echo "</tr>";
                                         }
                                     }
+                                } else {
+                                    echo "<tr>";
+                                    echo "<td colspan='12'>No hay usuarios registrados.</td>";
+                                    echo "</tr>";
                                 }
                                 ?>
                             </tbody>

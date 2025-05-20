@@ -136,7 +136,11 @@ include("server/checkProduct.php");
                             <?php
                             if (checkIfProductoIsActive($libro['codigo_libro'])) { ?>
                                 <a class="book" href=<?php echo "pages/libro.php?codigo_libro=" . $libro["codigo_libro"]; ?>>
-                                    <img class="portada" src="assets/images/covers/<?php echo $libro["codigo_libro"] ?>.png">
+                                    <?php if (file_exists("assets/images/covers/" . $libro["codigo_libro"] . ".png")) {
+                                        echo '<img class="portada" src="assets/images/covers/' . $libro["codigo_libro"] . '.png">';
+                                    } else {
+                                        echo '<img class="portada" src="assets/images/covers/sin_portada.png">';
+                                    } ?>
                                     <p class="titulo"><?php echo mb_strtoupper($libro["titulo"]) ?></p>
                                     <div class="buttoncarro"><img src="assets/images/buttoncarro.png" alt="añadir a la cesta" height="35px"></div>
                                     <p class="precio"><?php echo $libro["precio"] ?></p>
