@@ -5,7 +5,7 @@ const toggleDarkMode = () => {
     root.classList.toggle('light-mode');
 
     const isLightMode = root.classList.contains('light-mode');
-    bulbIcon.setAttribute('fill', isLightMode ? '#FFD700' : '#e3e3e3'); // Amarillo para claro, gris para oscuro
+    bulbIcon.setAttribute('fill', isLightMode ? '#FFD700' : '#e3e3e3');
 
     localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
 };

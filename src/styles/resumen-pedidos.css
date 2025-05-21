@@ -2,7 +2,6 @@
     max-width: 1000px;
     margin: 40px auto;
     padding: 30px 40px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #222;
     background-color: #fff;
     border-radius: 12px;
@@ -125,7 +124,6 @@
     margin: 0;
 }
 
-/* Responsive móvil (igual que la versión anterior) */
 
 @media (max-width: 1646px) {
     #resumen-pedido-container {

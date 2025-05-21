@@ -403,7 +403,6 @@ function insertarLibro() {
 
     const formData = new FormData(form);
 
-    // Validar campos obligatorios
     const camposObligatorios = [
         'titulo',
         'genero',

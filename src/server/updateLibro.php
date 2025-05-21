@@ -3,20 +3,20 @@ include_once('getConnection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $codigo_libro       = $_POST['codigo_libro'] ?? null;
-    $titulo             = $_POST['titulo'] ?? '';
-    $genero             = $_POST['genero'] ?? '';
-    $editorial          = $_POST['editorial'] ?? '';
-    $n_pag              = $_POST['n_pag'] ?? 0;
-    $idioma             = $_POST['idioma'] ?? '';
-    $fecha_publ         = $_POST['fecha_publ'] ?? '';
-    $encuadernacion     = $_POST['encuadernacion'] ?? '';
-    $precio             = $_POST['precio'] ?? 0.00;
-    $descripcion_libro  = $_POST['descripcion_libro'] ?? '';
-    $serie              = $_POST['serie'] ?? null;
-    $numero             = $_POST['numero'] ?? null;
-    $codigo_autor       = $_POST['codigo_autor'] ?? null;
-    $activado           = intval($_POST['activado'] ?? 1);
+    $codigo_libro = $_POST['codigo_libro'] ?? null;
+    $titulo = $_POST['titulo'] ?? '';
+    $genero = $_POST['genero'] ?? '';
+    $editorial = $_POST['editorial'] ?? '';
+    $n_pag = $_POST['n_pag'] ?? 0;
+    $idioma = $_POST['idioma'] ?? '';
+    $fecha_publ = $_POST['fecha_publ'] ?? '';
+    $encuadernacion = $_POST['encuadernacion'] ?? '';
+    $precio = $_POST['precio'] ?? 0.00;
+    $descripcion_libro = $_POST['descripcion_libro'] ?? '';
+    $serie = $_POST['serie'] ?? null;
+    $numero = $_POST['numero'] ?? null;
+    $codigo_autor = $_POST['codigo_autor'] ?? null;
+    $activado = intval($_POST['activado'] ?? 1);
 
     if (!$codigo_libro) {
         echo json_encode(['success' => false, 'message' => 'Código del libro no proporcionado.']);
