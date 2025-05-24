@@ -21,7 +21,7 @@ create table libro(
   idioma enum('Inglés','Español') not null,
   fecha_publ date not null,
   encuadernacion enum('Tapa blanda','Tapa dura') not null,
-  precio decimal(5,2) not null,
+  precio decimal(10,2) not null,
   descripcion_libro text not null,
   serie varchar(100),
   numero int,
