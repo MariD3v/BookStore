@@ -68,7 +68,7 @@ if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
                 </div>
                 <div>
                     <label>Teléfono</label>
-                    <input type="text" name="order_phone" placeholder=" Teléfono" minlength="9" maxlength="9" />
+                    <input type="tel" name="order_phone" placeholder=" Teléfono" minlength="9" maxlength="9" />
                     <p class="pError"></p>
                 </div>
                 <div>
