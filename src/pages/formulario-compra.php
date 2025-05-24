@@ -68,7 +68,7 @@ if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
                 </div>
                 <div>
                     <label>Teléfono</label>
-                    <input type="text" name="order_phone" placeholder=" Teléfono">
+                    <input type="text" name="order_phone" placeholder=" Teléfono" minlength="9" maxlength="9" />
                     <p class="pError"></p>
                 </div>
                 <div>
@@ -104,7 +104,7 @@ if (empty($_SESSION['cart']) || !isset($_SESSION['logged_in'])) {
         </form>
     </main>
 
-   <footer>
+    <footer>
         <div class="links">
             <a href="https://github.com/IAmRiven" target="_blank" rel="noreferrer">
                 <svg height="24" viewBox="0 0 16 16" width="24">
