@@ -69,7 +69,6 @@ create table detalle_compra(
 );
 
 CREATE TABLE visitas (
-  id INT PRIMARY KEY AUTO_INCREMENT,
   visitas INT NOT NULL DEFAULT 0
 );
 
@@ -194,4 +193,4 @@ INSERT INTO cliente VALUES
 (24, 'Isabel', 'Ramos Nieto', 'isabelramos@correo.net', 'a87ff679a2f3e71d9181a67b7542122c', 0),
 (25, 'Hugo', 'Méndez Barrios', 'hmendez@ejemplo.com', '0cc175b9c0f1b6a831c399e269772661', 0);
 
-INSERT INTO visitas (id, visitas) VALUES (0, 0);
+INSERT INTO visitas (visitas) VALUES (0);
