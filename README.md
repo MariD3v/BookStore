@@ -65,5 +65,5 @@ Los usuarios se distinguen entre usuario básico y administradores; Los usuarios
 
 Para una mejor comprensión del proyecto y su despliegue, puedes consultar los siguientes apartados:
 
-- 🔌 [Documentación de la API](./api/documentacion_api.md): Detalles técnicos sobre los endpoints disponibles, métodos, respuestas y ejemplos de uso.
-- 🛠️ [Guía de instalación](./INSTALACION.md): Instrucciones paso a paso para configurar la aplicación en un entorno local o servidor.
+- [Documentación de la API](./api/documentacion_api.md): Detalles técnicos sobre los endpoints disponibles, métodos, respuestas y ejemplos de uso.
+- [Guía de instalación](./INSTALACION.md): Instrucciones paso a paso para configurar la aplicación en un entorno local o servidor.
