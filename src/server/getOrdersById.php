@@ -12,7 +12,8 @@ $sql = "
         c.nombre, 
         c.apellidos, 
         dc.codigo_libro, 
-        dc.unidades, 
+        dc.unidades,
+        dc.precio_unitario, 
         l.precio,
         l.titulo
     FROM compra c
@@ -31,7 +32,7 @@ if ($result->num_rows > 0) {
     $totalCompra = 0;
 
     while ($row = $result->fetch_assoc()) {
-        $totalProducto = $row['unidades'] * $row['precio'];
+        $totalProducto = $row['unidades'] * $row['precio_unitario'];
 
         $orderDetails[] = [
             'codigo_libro' => $row['codigo_libro'],
@@ -41,6 +42,7 @@ if ($result->num_rows > 0) {
             'unidades' => $row['unidades'],
             'precio' => $row['precio'],
             'titulo' => $row['titulo'],
+            'precio_unitario' => $row['precio_unitario'],
             'total_producto' => $totalProducto
         ];
 

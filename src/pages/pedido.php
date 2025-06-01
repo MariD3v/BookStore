@@ -64,9 +64,9 @@ include("../server/order.php");
                                         } ?></a></td>
                                 <td class="detalleProducto"><?php echo $detalle["titulo"] ?></td>
                                 <td class="detalleProducto"><?php echo $detalle["nombre"] ?></td>
-                                <td class="detalleProducto"><?php echo $detalle["precio"] ?>€</td>
+                                <td class="detalleProducto"><?php echo $detalle["precio_unitario"] ?>€</td>
                                 <td class="detalleProducto"><?php echo $detalle["unidades"] ?></td>
-                                <td class="detalleProducto"><?php echo $detalle["precio"] * $detalle["unidades"] ?>€</td>
+                                <td class="detalleProducto"><?php echo $detalle["precio_unitario"] * $detalle["unidades"] ?>€</td>
                             </tr>
                     <?php }
                     } ?>

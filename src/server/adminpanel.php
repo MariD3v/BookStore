@@ -137,3 +137,15 @@ function getAuthors()
     }
     return $rows;
 }
+
+function getTotalPriceById($id)
+{
+    global $conn;
+    $stmt = $conn->prepare('SELECT total FROM compra WHERE codigo_compra = ?');
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    return $row['total'];
+}

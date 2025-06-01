@@ -63,6 +63,7 @@ create table detalle_compra(
   codigo_compra int auto_increment,
   codigo_libro int not null,
   unidades int not null,
+  precio_unitario decimal(10,2) not null,
   primary key (codigo_compra,codigo_libro),
   foreign key (codigo_libro) references libro(codigo_libro) ON UPDATE CASCADE ON DELETE CASCADE,
   foreign key (codigo_compra) references compra(codigo_compra) ON UPDATE CASCADE ON DELETE CASCADE

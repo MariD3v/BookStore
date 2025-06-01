@@ -216,7 +216,7 @@ function mostrarDetallesPedido(orderDetails, total) {
         <td>${product.codigo_libro}</td>
         <td>${product.titulo}</td>
         <td>${product.unidades}</td>
-        <td>${parseFloat(product.precio).toFixed(2)} €</td>
+        <td>${parseFloat(product.precio_unitario).toFixed(2)} €</td>
         <td>${parseFloat(product.total_producto).toFixed(2)} €</td>
       `;
         tableBody.appendChild(row);

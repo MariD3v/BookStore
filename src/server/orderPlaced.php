@@ -27,9 +27,10 @@ if (isset($_POST['docompraformulariodefinitiva']) && isset($_SESSION['logged_in'
         $product = $_SESSION['cart'][$key];
         $product_id = $product['product_id'];
         $product_quantity = $product['product_quantity'];
+        $product_price = $product['product_price'];
 
-        $stmt = $conn->prepare("INSERT INTO detalle_compra (codigo_compra, codigo_libro, unidades) VALUES (?, ?, ?);");
-        $stmt->bind_param('iii', $order_id, $product_id, $product_quantity);
+        $stmt = $conn->prepare("INSERT INTO detalle_compra (codigo_compra, codigo_libro, unidades, precio_unitario) VALUES (?, ?, ?, ?);");
+        $stmt->bind_param('iiid', $order_id, $product_id, $product_quantity, $product_price);
         $stmt->execute();
     }
     unset($_SESSION['cart']);

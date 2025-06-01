@@ -88,10 +88,10 @@ include_once("../server/adminpanel.php");
                                     echo '<img class="portadaPedido" src="../assets/images/covers/sin_portada.png">';
                                 } ?>
                                 <h2 class="idPedido">ID compra: <?php echo $compra["codigo_compra"] ?></h2>
-                                <h2 class="totalPedido">Total: <?php echo $compra['total_compra'] ?>€</h2>
+                                <h2 class="totalPedido">Total: <?php echo getTotalPriceById(1) ?>€</h2>
                                 <h2 class="fechaPedido">Fecha: <?php echo $compra["fecha"] ?></h2>
                                 <h2 class="artiPedido"><?php echo $compra['total_articulos'] ?> artículos</h2>
-                                <a id="detallesPerfil" href=<?php echo "pedido.php?codigo_compra=" . $compra["codigo_compra"] . "&total=" . $compra['total_compra']; ?>>Ver más detalles</a>
+                                <a id="detallesPerfil" href=<?php echo "pedido.php?codigo_compra=" . $compra["codigo_compra"] . "&total=" . getTotalPriceById($compra["codigo_compra"]); ?>>Ver más detalles</a>
                             </div>
                     <?php }
                     } ?>
