@@ -48,13 +48,17 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
 
 4. **Permisos**
 
-   - Asegúrate que el servidor web tiene permisos de lectura para las carpetas y archivos del proyecto.
+   Para que el servidor web (como Apache o Nginx) pueda acceder a los archivos del proyecto, es fundamental asignar los permisos adecuados.
+
+   - Cambia el propietario y grupo de todos los archivos y carpetas dentro de `/var/www/` al usuario y grupo del servidor web (`www-data` en la mayoría de distribuciones Linux como Ubuntu/Debian).
+
+   - Esto garantiza que el servidor web tenga permisos para leer (y si es necesario, escribir) en esos archivos.
+
+   Ejecuta el siguiente comando desde la terminal:
 
    ```bash
    cd /var/www/
    sudo chown -R www-data:www-data .
-   ```
-
 5. **Configurar el servidor web**
 
    - En Apache, configura el `VirtualHost` para apuntar a la carpeta pública de BookStore.
