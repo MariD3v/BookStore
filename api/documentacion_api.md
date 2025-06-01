@@ -43,7 +43,8 @@ function getProducts(){
     "serie": "Trono de cristal",
     "numero": 1,
     "codigo_autor": 1,
-    "activado": 1
+    "activado": 1,
+    "url_imagen": "src/assets/images/covers/1.png"
   },
   {
     "codigo_libro": 2,
@@ -59,7 +60,8 @@ function getProducts(){
     "serie": "Trono de cristal",
     "numero": 2,
     "codigo_autor": 1,
-    "activado": 1
+    "activado": 1,
+    "url_imagen": "src/assets/images/covers/2.png"
   }
 ]
 ```
@@ -68,7 +70,7 @@ function getProducts(){
 
 ## Petición para obtener un libro con ID especifico
 
-- **URL:** `/api/ProductByID.php?id=1`  
+- **URL:** `/api/ProductById.php?id=1`  
 - **Método:** `GET`  
 - **Descripción:** Devuelve un objeto con los datos del libro.
 
@@ -105,7 +107,8 @@ function getProductById(id){
   "serie": "Trono de cristal",
   "numero": 1,
   "codigo_autor": 1,
-  "activado": 1
+  "activado": 1,
+  "url_imagen": "src/assets/images/covers/1.png"
 }
 ```
 </details>

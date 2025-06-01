@@ -19,13 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     $stmt =  $conn->prepare("SELECT * FROM libro WHERE codigo_libro = ? ORDER BY codigo_libro ASC");
     $stmt->bind_param("i", $_GET['id']);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $stmt->get_result()->fetch_assoc();
 
-    if ($result->num_rows === 0) {
+
+    if ($result === null) {
         http_response_code(404);
         echo json_encode(['error' => 'Producto no encontrado'], JSON_UNESCAPED_UNICODE);
         exit;
     }
-}
 
-echo json_encode($result->fetch_assoc());
+    $result['url_imagen'] = "src/assets/images/covers/" . $result['codigo_libro'] . ".png";
+}
+echo json_encode($result, JSON_UNESCAPED_UNICODE);
+$stmt->close();

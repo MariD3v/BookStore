@@ -17,8 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 
     $products = array();
     while ($row = $result->fetch_assoc()) {
+        $row['url_imagen'] = "src/assets/images/covers/" . $row['codigo_libro'] . ".png";
         $products[] = $row;
     }
 }
 
 echo json_encode($products, JSON_UNESCAPED_UNICODE);
+$stmt->close();
