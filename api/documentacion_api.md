@@ -1,6 +1,6 @@
 ## Documentación de uso la API
 
-Aquí podrás encontrar los Endpoints que tenemos disponibles desde de **BookStore** y cómo funcionan.
+Aquí podrás encontrar los Endpoints que tenemos disponibles desde **BookStore** y cómo funcionan.
 La API sigue una arquitectura sencilla basada en PHP con respuestas en formato JSON.
 
 ## Petición para obtener todos nuestros libros
@@ -9,10 +9,19 @@ La API sigue una arquitectura sencilla basada en PHP con respuestas en formato J
 - **Método:** `GET`  
 - **Descripción:** Devuelve un listado de objetos de todos los libros almacenados en la base de datos, ordenados por su código.
 
-### Ejemplo de uso
+### Ejemplo de llamada en JavaScript
 
 ```bash
-GET /api/Products.php
+function getProducts(){
+    fetch('/api/products.php')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Ha ocurrido un error:', error);
+    });
+}
 ```
 
 <details>
@@ -63,10 +72,19 @@ GET /api/Products.php
 - **Método:** `GET`  
 - **Descripción:** Devuelve un objeto con los datos del libro.
 
-### Ejemplo de uso
+### Ejemplo de llamada en JavaScript
 
 ```bash
-GET /api/ProductByID.php
+function getProductById(id){
+    fetch(`/api/productbyid.php?id=${id}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Ha ocurrido un error:', error);
+    });
+}
 ```
 
 <details>

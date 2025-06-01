@@ -201,6 +201,7 @@ include("server/checkProduct.php");
     </footer>
 
     <script src="scripts/dropdownMenus.js"> </script>
+    <script src="scripts/example.js"> </script>
 </body>
 
 </html>
