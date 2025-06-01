@@ -44,8 +44,8 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
 
    - Modifica `src/server/getConnection.php` con los datos reales de acceso a la base de datos (host, usuario, contraseña y nombre de la base).
 
-    > [!TIP]
-    > Si estás en local, puedes cambiar el valor de `"crearBase"` a `true` y entrar a tu web; automáticamente se crearán las tablas. Recuerda que después debes volver a cambiarlo a `false`.
+   > [!TIP]
+   > Si estás en local, puedes cambiar el valor de `"crearBase"` a `true` y entrar a tu web; automáticamente se crearán las tablas. Recuerda que después debes volver a cambiarlo a `false`.
 
   
 
