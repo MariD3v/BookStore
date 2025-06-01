@@ -37,19 +37,19 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
        ```
      </details>
 
-2. **Configurar la base de datos**
+2. **Configurar la base de datos y conexión**
 
    - Crea una base de datos en el servidor.
    - Importa el script SQL (`database/database.sql`) para crear las tablas y datos iniciales.
 
-> [!NOTE]
-> Si estás en local puedes cambiar el valor de `"crearBase"` a `true` y entrar a tu web; automáticamente se crearán las tablas, pero recuerda que después de crearse debes volver a cambiarlo a `false`.
-
-3. **Editar la configuración de conexión**
-
    - Modifica `src/server/getConnection.php` con los datos reales de acceso a la base de datos (host, usuario, contraseña y nombre de la base).
 
-4. **Permisos**
+    > [!TIP]
+    > Si estás en local, puedes cambiar el valor de `"crearBase"` a `true` y entrar a tu web; automáticamente se crearán las tablas. Recuerda que después debes volver a cambiarlo a `false`.
+
+  
+
+3. **Permisos**
 
    Para que el servidor web (como Apache o Nginx) pueda acceder a los archivos del proyecto, es fundamental asignar los permisos adecuados.
 
@@ -62,7 +62,7 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
    ```bash
    cd /var/www/
    sudo chown -R www-data:www-data .
-5. **Configurar el servidor web**
+4. **Configurar el servidor web**
 
    - En Apache, configura el `VirtualHost` para apuntar a la carpeta pública de BookStore.
    - En Nginx, configura el bloque `server` equivalente:
@@ -90,7 +90,7 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
        ```
      </details>
 
-6. **Probar la instalación**
+5. **Probar la instalación**
 
    - Accede al dominio o IP donde has instalado la aplicación.
    - Comprueba que la página carga correctamente y que los endpoints de la API responden.
