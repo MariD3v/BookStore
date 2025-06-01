@@ -14,7 +14,7 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
 
 1. **Subir archivos al servidor**
 
-   - Usa FTP, SFTP o SCP para transferir los archivos del proyecto a la carpeta pública del servidor (`/var/www/html` en Linux con Apache, por ejemplo).
+   - Usa FTP, SFTP o SCP para transferir los archivos del proyecto a la carpeta pública del servidor (`/var/www/html`) en Linux con Apache, por ejemplo.
 
      <details>
        <summary>Resultado</summary>
@@ -50,7 +50,7 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
 
    Para que el servidor web (como Apache o Nginx) pueda acceder a los archivos del proyecto, es fundamental asignar los permisos adecuados.
 
-   - Cambia el propietario y grupo de todos los archivos y carpetas dentro de `/var/www/` al usuario y grupo del servidor web (`www-data` en la mayoría de distribuciones Linux como Ubuntu/Debian).
+   - Cambia el propietario y grupo de todos los archivos y carpetas dentro de `/var/www/` al usuario y grupo del servidor web (`www-data`) en la mayoría de distribuciones Linux como Ubuntu/Debian.
 
    - Esto garantiza que el servidor web tenga permisos para leer (y si es necesario, escribir) en esos archivos.
 
