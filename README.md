@@ -59,3 +59,11 @@ Los usuarios se distinguen entre usuario básico y administradores; Los usuarios
 - Opción de incorporar portada específica en el panel de administrador
 
 ¡Gracias por usar BookStore! Si tienes alguna sugerencia o encuentras un problema, no dudes en crear un issue en el repositorio o contribuir con un pull request.
+
+
+## Documentación adicional
+
+Para una mejor comprensión del proyecto y su despliegue, puedes consultar los siguientes apartados:
+
+- 🔌 [Documentación de la API](./api/documentacion_api.md): Detalles técnicos sobre los endpoints disponibles, métodos, respuestas y ejemplos de uso.
+- 🛠️ [Guía de instalación](./INSTALACION.md): Instrucciones paso a paso para configurar la aplicación en un entorno local o servidor.
