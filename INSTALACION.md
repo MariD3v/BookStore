@@ -41,7 +41,6 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
 
    - Crea una base de datos en el servidor.
    - Importa el script SQL (`database/database.sql`) para crear las tablas y datos iniciales.
-
    - Modifica `src/server/getConnection.php` con los datos reales de acceso a la base de datos (host, usuario, contraseña y nombre de la base).
 
 > [!TIP]
@@ -98,7 +97,7 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
 ### Consejos adicionales
 
 <details>
-  <summary>Habilita HTTPS y certificados SSL</summary>
+  <summary>Habilita HTTPS y certificados SSL (Dominio necesario)</summary>
 
 Para entornos de producción, es fundamental proteger la comunicación entre cliente y servidor usando HTTPS.
 
@@ -106,9 +105,23 @@ Para entornos de producción, es fundamental proteger la comunicación entre cli
 - En **Apache**, una vez instalados los certificados, activa SSL con:
 
   ```bash
+  sudo apt update
   sudo a2enmod ssl
   sudo a2ensite default-ssl
   sudo systemctl reload apache2
+  ```
+- Ejecuta el siguiente comando de CertBot para obtener y configurar automáticamente el certificado SSL
+  ```bash
+  sudo certbot --nginx -d tu-dominio.com -d www.tu-dominio.com
+  ```
+
+- En **Nginx**, sigue estos pasos para instalar y configurar el certificado SSL con Certbot:
+
+  ```bash
+  sudo apt update
+  sudo apt install certbot python3-certbot-nginx
+  sudo certbot --nginx -d tu-dominio.es -d www.tu-dominio.es
+  sudo systemctl status certbot.timer
   ```
 </details>
 
