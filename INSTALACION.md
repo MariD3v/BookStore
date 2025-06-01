@@ -110,19 +110,19 @@ Para entornos de producción, es fundamental proteger la comunicación entre cli
   sudo a2ensite default-ssl
   sudo systemctl reload apache2
   ```
-- Ejecuta el siguiente comando de CertBot para obtener y configurar automáticamente el certificado SSL
-  ```bash
-  sudo certbot --nginx -d tu-dominio.com -d www.tu-dominio.com
-  ```
 
 - En **Nginx**, sigue estos pasos para instalar y configurar el certificado SSL con Certbot:
 
   ```bash
   sudo apt update
   sudo apt install certbot python3-certbot-nginx
-  sudo certbot --nginx -d tu-dominio.es -d www.tu-dominio.es
-  sudo systemctl status certbot.timer
   ```
+  
+- Ejecuta el siguiente comando de CertBot para obtener y configurar automáticamente el certificado SSL
+  ```bash
+  sudo certbot --nginx -d tu-dominio.com -d www.tu-dominio.com
+  ```
+  
 </details>
 
 <details>
