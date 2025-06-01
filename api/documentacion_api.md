@@ -7,7 +7,7 @@ La API sigue una arquitectura sencilla basada en PHP con respuestas en formato J
 
 - **URL:** `/api/Products.php`  
 - **Método:** `GET`  
-- **Descripción:** Devuelve un listado completo de todos los libros almacenados en la base de datos, ordenados por su código.
+- **Descripción:** Devuelve un listado de objetos de todos los libros almacenados en la base de datos, ordenados por su código.
 
 ### Ejemplo de uso
 
