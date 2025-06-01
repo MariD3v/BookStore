@@ -40,7 +40,10 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
 2. **Configurar la base de datos**
 
    - Crea una base de datos en el servidor.
-   - Importa el script SQL (`database/script.sql`) para crear las tablas y datos iniciales.
+   - Importa el script SQL (`database/database.sql`) para crear las tablas y datos iniciales.
+
+> [!NOTE]
+> Si estás en local puedes cambiar el valor de `"crearBase"` a `true` y entrar a tu web; automáticamente se crearán las tablas, pero recuerda que después de crearse debes volver a cambiarlo a `false`.
 
 3. **Editar la configuración de conexión**
 
