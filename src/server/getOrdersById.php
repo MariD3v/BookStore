@@ -6,17 +6,26 @@ $orderId = intval($_GET['orderId']);
 
 $sql = "
     SELECT 
+        cl.nombre AS nombre_cliente,
+        cl.apellidos AS apellidos_cliente,
+        cl.email AS email_cliente,
         c.codigo_compra, 
         c.total, 
         c.estado, 
         c.nombre, 
+        c.telefono, 
+        c.direccion,
+        c.codigo_postal,
+        c.poblacion,
+        c.provincia, 
+        c.direccion_adicional,
         c.apellidos, 
         dc.codigo_libro, 
         dc.unidades,
         dc.precio_unitario, 
         l.precio,
         l.titulo
-    FROM compra c
+    FROM cliente cl INNER JOIN compra c ON cl.codigo_cliente = c.codigo_cliente
     LEFT JOIN detalle_compra dc ON c.codigo_compra = dc.codigo_compra
     LEFT JOIN libro l ON dc.codigo_libro = l.codigo_libro
     WHERE c.codigo_compra = ?
@@ -35,14 +44,23 @@ if ($result->num_rows > 0) {
         $totalProducto = $row['unidades'] * $row['precio_unitario'];
 
         $orderDetails[] = [
+            'datos_cliente' => $row['nombre_cliente'] . ' ' . $row['apellidos_cliente'],
+            'email_cliente' => $row['email_cliente'],
             'codigo_libro' => $row['codigo_libro'],
-            'nombre' => $row['nombre'],
-            'estado' => $row['estado'],
+            'nombre_completo' => $row['nombre'] . ' ' . $row['apellidos'],
             'apellidos' => $row['apellidos'],
             'unidades' => $row['unidades'],
             'precio' => $row['precio'],
             'titulo' => $row['titulo'],
             'precio_unitario' => $row['precio_unitario'],
+            'direccion_envio' => ucfirst($row['direccion']),
+            'codigo_postal' => $row['codigo_postal'],
+            'poblacion' => $row['poblacion'],
+            'provincia' => $row['provincia'],
+            'direccion_adicional' => $row['direccion_adicional'] ?? '',
+            'telefono' => $row['telefono'],
+            'codigo_compra' => $row['codigo_compra'],
+            'estado' => $row['estado'],
             'total_producto' => $totalProducto
         ];
 

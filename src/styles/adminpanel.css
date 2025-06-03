@@ -894,3 +894,22 @@ input[type="file"] {
 .updateBookModal-actions .updateBookModal-cancel:hover {
     background-color: #c82333;
 }
+
+.orderModal-customer {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.orderModal-information{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.orderModel-customer-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+    ;
+}

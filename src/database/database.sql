@@ -194,4 +194,55 @@ INSERT INTO cliente VALUES
 (24, 'Isabel', 'Ramos Nieto', 'isabelramos@correo.net', 'a87ff679a2f3e71d9181a67b7542122c', 0),
 (25, 'Hugo', 'Méndez Barrios', 'hmendez@ejemplo.com', '0cc175b9c0f1b6a831c399e269772661', 0);
 
+-- Datos probar la web
+INSERT INTO compra (codigo_compra, estado, fecha, nombre, apellidos, telefono, direccion, direccion_adicional, codigo_postal, poblacion, provincia, codigo_cliente, total) VALUES
+(1, 'Entregado', '2025-06-01 10:45:00', 'Lucía', 'Martínez Pérez', 611223344, 'Calle Falsa 123', 'Piso 1B', 28001, 'Madrid', 'Madrid', 6, 36.30),
+(2, 'En tránsito', '2025-06-02 15:20:00', 'Carlos', 'González Ruiz', 655778899, 'Av. Principal 45', 'Portal 4', 08021, 'Barcelona', 'Barcelona', 7, 18.15),
+(3, 'Pendiente de envío', '2025-06-03 09:00:00', 'Sandra', 'Jiménez Vargas', 622334455, 'Calle Luna 76', 'Esc. Dcha', 41012, 'Sevilla', 'Sevilla', 12, 35.98),
+(4, 'Enviado', '2025-06-01 12:00:00', 'David', 'Ramírez Torres', 612345678, 'Calle Mayor 10', '2ºA', 28010, 'Madrid', 'Madrid', 11, 157.42),
+(5, 'Entregado', '2025-06-01 16:30:00', 'Elena', 'Morales Sánchez', 623456789, 'Av. del Sol 55', '3ºB', 08020, 'Barcelona', 'Barcelona', 10, 189.85),
+(6, 'Pagado', '2025-06-02 09:00:00', 'María', 'López Díaz', 634567890, 'Calle Luna 21', '', 41013, 'Sevilla', 'Sevilla', 8, 144.99),
+(7, 'En tránsito', '2025-06-02 14:15:00', 'Rubén', 'Delgado Suárez', 645678901, 'Camino Real 89', 'Chalet 1', 46001, 'Valencia', 'Valencia', 19, 128.79),
+(8, 'Pendiente de pago', '2025-06-03 10:45:00', 'Claudia', 'Ortega Paredes', 656789012, 'Paseo del Parque 8', 'Ático D', 29001, 'Málaga', 'Málaga', 20, 117.91);
+
+INSERT INTO detalle_compra (codigo_compra, codigo_libro, unidades, precio_unitario) VALUES
+(1, 1, 1, 18.15),
+(1, 2, 1, 18.15),
+(2, 3, 1, 18.15),
+(3, 5, 2, 17.99),
+(4, 1, 1, 18.15),
+(4, 2, 1, 18.15),
+(4, 3, 1, 18.15),
+(4, 4, 1, 18.15),
+(4, 5, 1, 18.15),
+(4, 6, 1, 18.15),
+(4, 7, 1, 18.52),
+(5, 8, 1, 14.59),
+(5, 9, 1, 11.99),
+(5, 10, 1, 11.99),
+(5, 11, 1, 11.99),
+(5, 12, 1, 24.99),
+(5, 13, 1, 16.99),
+(5, 14, 1, 16.99),
+(5, 15, 1, 16.99),
+(5, 16, 1, 14.99),
+(5, 17, 1, 16.73),
+(6, 18, 1, 14.99),
+(6, 19, 1, 14.99),
+(6, 20, 1, 17.99),
+(6, 21, 1, 16.99),
+(6, 22, 1, 16.99),
+(6, 23, 1, 17.99),
+(7, 24, 1, 17.99),
+(7, 25, 1, 17.99),
+(7, 26, 1, 26.15),
+(7, 27, 1, 26.15),
+(7, 28, 1, 26.51),
+(8, 29, 1, 26.15),
+(8, 30, 1, 26.15),
+(8, 31, 1, 14.99),
+(8, 32, 1, 18.99),
+(8, 33, 1, 17.99),
+(8, 34, 1, 13.64);
+
 INSERT INTO visitas (visitas) VALUES (0);

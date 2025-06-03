@@ -199,12 +199,31 @@ if (!checkUserPerms($_SESSION['user_id'])) {
         <div id="orderModal-container" class="orderModal-modal">
             <div class="orderModal-content">
                 <span class="orderModal-close">&times;</span>
-                <h2 class="orderModal-title">Detalle de la Compra</h2>
+                <h2 class="orderModal-title">Datos del pedido</h2>
 
                 <div class="orderModal-customer">
-                    <p><strong>Nombre:</strong> <span id="orderModal-customer-nombre"></span></p>
-                    <p><strong>Apellidos:</strong> <span id="orderModal-customer-apellidos"></span></p>
-                    <p><strong>Estado:</strong> <span id="orderModal-customer-estado"></span></p>
+                    <div class="orderModal-information">
+                        <div class="orderModel-customer-info" style="padding-bottom: 10px;">
+                            <div class="orderModel-info">
+                                <p><strong>Cliente:</strong> <span id="orderModal-customer-datos-cliente"></span></p>
+                                <p><strong>Email:</strong> <span id="orderModal-customer-email"></span></p>
+                                <p><strong>Teléfono:</strong> <span id="orderModal-customer-telefono"></span></p>
+                            </div>
+                            <div class="orderModel-order-status">
+                                <p><strong>Estado:</strong> <span id="orderModal-customer-estado"></span></p>
+                            </div>
+                        </div>
+                        <div class="orderModel-customer-shipping-information" style="padding-bottom: 10px;">
+                            <p><strong>Dirección de envío:</strong></p>
+                            <p>Nombre: <span id="orderModal-customer-nombre-completo"></span></p>
+                            <p>Dirección: <span id="orderModal-customer-direccion"></span></p>
+                            <p>Código Postal: <span id="orderModal-customer-codigo-postal"></span></p>
+                            <p>Población: <span id="orderModal-customer-poblacion"></span></p>
+                            <p>Provincia: <span id="orderModal-customer-provincia"></span></p>
+                            <p>Dirección adicional: <span id="orderModal-customer-direccion-adicional"></span></p>
+                        </div>
+                    </div>
+                    
                 </div>
 
                 <table class="orderModal-table">
@@ -220,8 +239,13 @@ if (!checkUserPerms($_SESSION['user_id'])) {
                     <tbody id="orderModal-table-body"></tbody>
                 </table>
 
-                <div class="orderModal-total">
-                    <strong>Total del pedido:</strong> <span id="orderModal-total-price">0.00</span> €
+                <div class="orderModal-total" style="display: flex; justify-content: space-between;">
+                    <div class="code">
+                        <p>Código de compra: <b><span id="orderModal-customer-codigo-compra"></span></b></p>
+                    </div>
+                    <div class="total">
+                        <strong>Total del pedido:</strong> <span id="orderModal-total-price">0.00</span> €
+                    </div>
                 </div>
             </div>
         </div>

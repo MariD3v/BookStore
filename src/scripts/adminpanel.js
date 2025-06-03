@@ -195,18 +195,35 @@ function mostrarDetallesPedido(orderDetails, total) {
     const tableBody = document.getElementById('orderModal-table-body');
     const totalSpan = document.getElementById('orderModal-total-price');
 
-    const nombre = document.getElementById('orderModal-customer-nombre');
-    const apellidos = document.getElementById('orderModal-customer-apellidos');
+    const datosCliente = document.getElementById('orderModal-customer-datos-cliente');
     const estado = document.getElementById('orderModal-customer-estado');
+    const direccion = document.getElementById('orderModal-customer-direccion');
+    const codigoPostal = document.getElementById('orderModal-customer-codigo-postal');
+    const poblacion = document.getElementById('orderModal-customer-poblacion');
+    const provincia = document.getElementById('orderModal-customer-provincia');
+    const direccion_adicional = document.getElementById('orderModal-customer-direccion-adicional');
+    const telefono = document.getElementById('orderModal-customer-telefono');
+    const codigoCompra = document.getElementById('orderModal-customer-codigo-compra');
+    const email = document.getElementById('orderModal-customer-email');
+    const nombreCompleto = document.getElementById('orderModal-customer-nombre-completo');
+    console.log(orderDetails);
 
     modal.classList.remove('close');
     modal.classList.add('show');
 
     if (!orderDetails.length) return;
 
-    nombre.textContent = orderDetails[0].nombre || '';
-    apellidos.textContent = orderDetails[0].apellidos || '';
+    datosCliente.textContent = orderDetails[0].datos_cliente || 'Sin identificar..';
+    email.textContent = orderDetails[0].email_cliente || 'Sin email..';
     estado.textContent = orderDetails[0].estado || '';
+    telefono.textContent = orderDetails[0].telefono || '';
+    codigoCompra.textContent = orderDetails[0].codigo_compra || '';
+    direccion.textContent = orderDetails[0].direccion_envio || '';
+    codigoPostal.textContent = orderDetails[0].codigo_postal || '';
+    poblacion.textContent = orderDetails[0].poblacion || '';
+    provincia.textContent = orderDetails[0].provincia || '';
+    direccion_adicional.textContent = orderDetails[0].direccion_adicional || 'Sin dirección adicional..';
+    nombreCompleto.textContent = orderDetails[0].nombre_completo || 'Sin nombre..';
 
     tableBody.innerHTML = '';
 
