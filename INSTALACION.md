@@ -8,7 +8,7 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
 - Base de datos MySQL o MariaDB.
 - Servidor web (Apache, Nginx, etc.).
 - Acceso SSH o panel de control para gestionar el servidor.
-- Opcional: máquina virtual (VirtualBox, VMware) con sistema operativo Linux o Windows configurado.
+- Máquina virtual o servidor con sistema operativo Linux o Windows configurado.
 
 ### Pasos para la instalación
 
@@ -50,7 +50,7 @@ Esta guía te explica cómo desplegar **BookStore** en un servidor web para que 
 
    Para que el servidor web (como Apache o Nginx) pueda acceder a los archivos del proyecto, es fundamental asignar los permisos adecuados.
 
-   - Cambia el propietario y grupo de todos los archivos y carpetas dentro de `/var/www/` al usuario y grupo del servidor web (`www-data`) en la mayoría de distribuciones Linux como Ubuntu/Debian.
+   - Cambia el propietario y grupo de todos los archivos y carpetas dentro de `/var/www/` al usuario y grupo del servidor web (`www-data`).
 
    - Esto garantiza que el servidor web tenga permisos para leer (y si es necesario, escribir) en esos archivos.
 
@@ -156,13 +156,4 @@ Puedes usar `mysqldump` para exportar toda la base de datos a un archivo `.sql`:
 
 ```bash
 mysqldump -u usuario -p base_de_datos > copia.sql
-```
-
-Para editar las tareas programadas con `cron`, ejecuta:
-
-```bash
-crontab -e
-```
-```bash
-0 2 * * * /usr/bin/mysqldump -u usuario -p'contraseña' base_de_datos > /ruta/respaldo_$(date +\%F).sql
 ```
