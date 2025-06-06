@@ -37,13 +37,14 @@ if (isset($_POST['iniciar_sesion'])) {
                 $_SESSION['user_name'] = $nombre;
                 $_SESSION['user_surname'] = $apellidos;
                 $_SESSION['logged_in'] = true;
-
+    
                 header('location:perfil.php');
                 exit();
             } else {
                 header('location: iniciar-sesion.php?error=El email o contraseña introducido no es correcto');
                 exit();
             }
+    
         } else {
             header('location: iniciar-sesion.php?error=Algo ha ido mal');
             exit();

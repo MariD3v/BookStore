@@ -24,7 +24,6 @@ if (isset($_GET['cerrarsesion'])) {
         unset($_SESSION['user_email']);
         unset($_SESSION['user_name']);
         unset($_SESSION['user_surname']);
-        unset($_SESSION['administrador']);
 
         header('location: iniciar-sesion.php');
         exit();

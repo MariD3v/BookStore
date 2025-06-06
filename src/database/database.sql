@@ -1,5 +1,6 @@
-
+DROP DATABASE IF EXISTS biblioteca;
 CREATE DATABASE IF NOT EXISTS biblioteca CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+USE biblioteca;
 
 
 create table autor(
@@ -37,7 +38,6 @@ create table cliente(
   apellidos varchar(50) not null,
   email varchar(100) unique not null,
   contraseña varchar(100),
-  administrador boolean default 0 not null,
   primary key(codigo_cliente)
 );
 
